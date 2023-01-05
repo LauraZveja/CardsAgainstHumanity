@@ -1,5 +1,5 @@
 package model;
 
 public enum Gender {
- Female, Male, Nonbinary, Other
+ Female, Male, Other
 }
