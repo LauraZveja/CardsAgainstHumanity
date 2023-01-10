@@ -1,5 +1,5 @@
 package model;
 
 public enum Country {
-	LATVIA, OTHER
+	LATVIA, ESTONIA, LITHUANIA, UK, USA, FRANCE, NORWAY, GREECE, ITALY, OTHER
 }

@@ -20,9 +20,8 @@ public class User {
 	public void setPassword(String password) {
 		// parole satur vismaz vienu ciparu, vismaz vienu mazo un lielo burtu, vismaz
 		// vienu special character un ir 8-20 zimes gara.
-		// regex kopēju no interneta, varbūt var pārbaudīt, vai vispār strādā xD
 		if (password != null
-				&& password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$")) {
+				&& password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#%^&()–[{}]:;',?/*~$^+=<>]).{8,20}$")) {
 			this.password = password;
 		} else {
 			this.password = "password123!";
@@ -34,10 +33,12 @@ public class User {
 	}
 
 	public void setUserName(String userName) {
-		// regex tāds pats kā Karinas izmantotajiem vārdiem, pieņemot, ka username mēs
-		// neļaujam izmantot ciparus.
-		if (userName != null && userName
-				.matches("[A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+\\s?([A-ZĒŪĪĀŠĢĶĻŅČŽ]{1}[a-zēūīļķģšāžčņ]+)?")) {
+		/*
+		 * starts with alphanumeric character, length must between 5-20,
+		 * dot/hyphen/underscore only after min 3 alphanumeric characters and cannot
+		 * appear consecutively
+		 */
+		if (userName != null && userName.matches("^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$")) {
 			this.userName = userName;
 		} else {
 			this.userName = "Unknown";
@@ -96,7 +97,7 @@ public class User {
 		if (gender != null) {
 			this.gender = gender;
 		} else {
-			this.gender = Gender.Other;
+			this.gender = Gender.OTHER;
 
 		}
 	}
@@ -114,6 +115,26 @@ public class User {
 		}
 	}
 
+	public User() {
+		setPassword("password123!");
+		setUserName("Unknown");
+		setDateOfBirth(new GregorianCalendar(2006, Calendar.JANUARY, 1));
+		setEmail("Unknown");
+		setRegistrationDate();
+		setGender(Gender.OTHER);
+		setCountry(Country.OTHER);
+	}
+
+	public User(String password, String userName, Calendar dateOfBirth) {
+		setPassword(password);
+		setUserName(userName);
+		setDateOfBirth(dateOfBirth);
+		setEmail("Unknown");
+		setRegistrationDate();
+		setGender(Gender.OTHER);
+		setCountry(Country.OTHER);
+	}
+
 	public User(String password, String userName, Calendar dateOfBirth, String email, Gender gender, Country country) {
 		setPassword(password);
 		setUserName(userName);
@@ -124,16 +145,12 @@ public class User {
 		setCountry(country);
 	}
 
-	// TODO:
-	// varbūt var padomāt un izveidot ne tikai no-args kontruktoru, bet tādu, kur
-	// useris norāda tikai username, paroli un dzimšanas datumu, bez epasta?
-	
-	
 	public String toString() {
 		return "User name:" + userName + ", date of birth: " + dateOfBirth.get(Calendar.DAY_OF_MONTH) + "/"
-				+ dateOfBirth.get((Calendar.MONTH)+1) + "/" + dateOfBirth.get(Calendar.YEAR) + ", email: "
-				+ email + ", registration date: " + registrationDate.get(Calendar.DAY_OF_MONTH) + "/"
-				+ registrationDate.get((Calendar.MONTH)+1) + "/" + registrationDate.get(Calendar.YEAR) + ", gender: " + gender + ", country: " + country;
+				+ dateOfBirth.get((Calendar.MONTH) + 1) + "/" + dateOfBirth.get(Calendar.YEAR) + ", email: " + email
+				+ ", registration date: " + registrationDate.get(Calendar.DAY_OF_MONTH) + "/"
+				+ registrationDate.get((Calendar.MONTH) + 1) + "/" + registrationDate.get(Calendar.YEAR) + ", gender: "
+				+ gender + ", country: " + country;
 	}
 
 }
