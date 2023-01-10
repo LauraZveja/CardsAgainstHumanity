@@ -79,14 +79,11 @@ public class User {
 		return registrationDate;
 	}
 
-	public void setRegistrationDate(Calendar registrationDate) {
-		Calendar checkDate = new GregorianCalendar(2023, Calendar.JANUARY, 1);
+	public void setRegistrationDate() {
 
-		if (registrationDate.after(checkDate)) {
-			this.registrationDate = registrationDate;
-		} else {
-			this.registrationDate = new GregorianCalendar(2023, Calendar.JANUARY, 1);
-		}
+		Calendar today = Calendar.getInstance();
+
+		this.registrationDate = today;
 
 	}
 
@@ -115,5 +112,19 @@ public class User {
 
 		}
 	}
+
+	public User(String password, String userName, Calendar dateOfBirth, String email, Gender gender, Country country) {
+		setPassword(password);
+		setUserName(userName);
+		setDateOfBirth(dateOfBirth);
+		setEmail(email);
+		setRegistrationDate();
+		setGender(gender);
+		setCountry(country);
+	}
+
+	// TODO:
+	// varbūt var padomāt un izveidot ne tikai no-args kontruktoru, bet tādu, kur
+	// useris norāda tikai username, paroli un dzimšanas datumu, bez epasta?
 
 }
