@@ -29,8 +29,8 @@ public class Admin extends User {
 		setAdminID();
 	}
 
-	public Admin() {
-		super();
+	public Admin(String password, String userName, Calendar dateOfBirth) {
+		super(password, userName, dateOfBirth);
 		setAdminID();
 	}
 
