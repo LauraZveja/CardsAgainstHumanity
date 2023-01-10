@@ -20,6 +20,7 @@ public class User {
 	public void setPassword(String password) {
 		// parole satur vismaz vienu ciparu, vismaz vienu mazo un lielo burtu, vismaz
 		// vienu special character un ir 8-20 zimes gara.
+		// regex kopēju no interneta, varbūt var pārbaudīt, vai vispār strādā xD
 		if (password != null
 				&& password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$")) {
 			this.password = password;
@@ -126,5 +127,13 @@ public class User {
 	// TODO:
 	// varbūt var padomāt un izveidot ne tikai no-args kontruktoru, bet tādu, kur
 	// useris norāda tikai username, paroli un dzimšanas datumu, bez epasta?
+	
+	
+	public String toString() {
+		return "User name:" + userName + ", date of birth: " + dateOfBirth.get(Calendar.DAY_OF_MONTH) + "/"
+				+ dateOfBirth.get((Calendar.MONTH)+1) + "/" + dateOfBirth.get(Calendar.YEAR) + ", email: "
+				+ email + ", registration date: " + registrationDate.get(Calendar.DAY_OF_MONTH) + "/"
+				+ registrationDate.get((Calendar.MONTH)+1) + "/" + registrationDate.get(Calendar.YEAR) + ", gender: " + gender + ", country: " + country;
+	}
 
 }
