@@ -115,6 +115,16 @@ public class User {
 		}
 	}
 
+	public User() {
+		setPassword("password123!");
+		setUserName("Unknown");
+		setDateOfBirth(new GregorianCalendar(2006, Calendar.JANUARY, 1));
+		setEmail("Unknown");
+		setRegistrationDate();
+		setGender(Gender.OTHER);
+		setCountry(Country.OTHER);
+	}
+
 	public User(String password, String userName, Calendar dateOfBirth) {
 		setPassword(password);
 		setUserName(userName);

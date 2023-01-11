@@ -24,6 +24,12 @@ public class Admin extends User {
 	}
 
 	// constructors
+
+	public Admin() {
+		super();
+		setAdminID();
+	}
+
 	public Admin(String password, String userName, Calendar dateOfBirth, String email, Gender gender, Country country) {
 		super(password, userName, dateOfBirth, email, gender, country);
 		setAdminID();
