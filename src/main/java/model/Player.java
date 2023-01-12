@@ -48,8 +48,8 @@ public class Player extends User{
 		}
 	}
 	
-	public Player(String password, String userName, Calendar dateOfBirth) {
-		super(password, userName, dateOfBirth);
+	public Player() {
+		super();
 		setPlayerID();
 		setAnswers(new ArrayList<AnswerCard>());
 		setScorePerRound(0);
