@@ -22,11 +22,23 @@ public ArrayList<String> getUnderage_answers() {
 	return underage_answers;
 }
 
-public void readAdultTxt() {
+public void readCategoryAdultTxt() {
     try (BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/ADULT.txt")))) {
         String line;
         while ((line = br.readLine()) != null) {
             adult_answers.add(line);
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+//Edgars
+public void readCategoryUnder_18Txt() {
+    try (BufferedReader br = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/UNDER_18.txt")))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+        	underage_answers.add(line);
         }
     } catch (IOException e) {
         e.printStackTrace();
