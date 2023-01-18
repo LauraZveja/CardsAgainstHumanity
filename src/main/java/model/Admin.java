@@ -9,10 +9,6 @@ public class Admin extends User {
 	private int adminID;
 
 	// getters
-	public static int getAdminCounter() {
-		return adminCounter;
-	}
-
 	public void getAdminID() {
 		this.adminID = adminID;
 	}
