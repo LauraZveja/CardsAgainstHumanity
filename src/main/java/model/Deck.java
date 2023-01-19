@@ -12,8 +12,8 @@ public class Deck {
 	private ArrayList<AnswerCard> answerCards = new ArrayList<AnswerCard>();
 	private Category category;
 
-	public void createDeck(Category category) {
-		readTxt();
+	public Deck(Category category) {
+		createDeck();
 		shuffle();
 		print();
 	}
@@ -41,7 +41,7 @@ public class Deck {
 		return temp;
 	}
 
-	public void readTxt() {
+	public void createDeck() {
 		try (BufferedReader br = new BufferedReader(
 				new InputStreamReader(this.getClass().getResourceAsStream("/ADULT.txt")))) {
 			String line;
