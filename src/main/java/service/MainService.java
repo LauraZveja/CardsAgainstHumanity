@@ -1,39 +1,47 @@
 package service;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
-import java.util.ArrayList;
-
-import model.AnswerCard;
+import model.Category;
 
 public class MainService {
-
-	
-	public void addArrayListAdult_answers(ArrayList<String> new_adult_answers) {
-		if (new_adult_answers != null) {
-			for (String new_answer : new_adult_answers) {
-				if (!adult_answers.contains(new_answer)) {
-					try (Writer output = new BufferedWriter(new FileWriter("ADULT.txt", true))) {
-						output.append(new_answer);
-						output.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-	}
-
-	
 	
 	
 	public static void main(String[] args) {
 
 		
-	
+		//insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte!");
+		//insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte");
 
 	}
+	
+	public static void insertAnswer(Category category, String newAnswer) {
+	    try (BufferedReader br = new BufferedReader(
+	            new FileReader("src/main/resources/" + category + ".txt"))) {
+	        String line;
+	        boolean alreadyExist = false;
+	        while ((line = br.readLine()) != null) {
+	            if (line.replaceAll("[\\.,'!]", "").equalsIgnoreCase(newAnswer.replaceAll("[\\.,'!]", ""))) {
+	                alreadyExist = true;
+	                break;
+	            }
+	        }
+	        if (!alreadyExist) {
+	            try (BufferedWriter bw = new BufferedWriter(
+	                    new FileWriter("src/main/resources/ADULT.txt", true))) {
+	                bw.write(newAnswer);
+	                bw.newLine();
+	            }
+	        } else {
+	            System.out.println("Answer already exists in the file");
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+
 
 }

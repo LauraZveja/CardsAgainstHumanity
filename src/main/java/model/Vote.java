@@ -62,9 +62,7 @@ public class Vote {
 	public void setAnswerCard(AnswerCard answerCard) {
 		if (answerCard != null) {
 			this.answerCard = answerCard;
-		} else {
-			this.answerCard = new AnswerCard();
-		}
+		} 
 	}
 
 	public void setPlayer(Player player) {
@@ -98,7 +96,7 @@ public class Vote {
 		setVoteID();
 		setRound(new Round());
 		setQuestionCard(new QuestionCard());
-		setAnswerCard(new AnswerCard());
+		//setAnswerCard(new AnswerCard());
 		setPlayer(new Player());
 		setVoteCount((byte) 0);
 	}
