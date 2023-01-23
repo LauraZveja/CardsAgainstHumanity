@@ -26,7 +26,7 @@ public class Deck {
 		Random rand = new Random();
 
 		for (int i = 0; i < 1000; i++) {
-			int place = rand.nextInt(52);
+			int place = rand.nextInt(answerCards.size());
 			AnswerCard temp = answerCards.get(place);
 			answerCards.remove(place);
 			answerCards.add(temp);
