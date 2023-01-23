@@ -7,7 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import model.AnswerCard;
 import model.Category;
+import model.Deck;
+import model.Player;
 
 public class MainService {
 
@@ -32,6 +35,21 @@ public class MainService {
 		 * Print the contents of the file System.out.println(line); } // Close the
 		 * reader reader.close(); } catch (IOException e) { e.printStackTrace(); }
 		 */
+		
+		
+		// Pārbaude, vai katram spēlētājam piešķir 5 dažādas atbilžu kārtis. 
+		/*
+		Player speletajs = new Player();
+		Deck kava = new Deck(Category.ADULT);
+		dealHand(speletajs, kava);
+		
+		Player speletajs2 = new Player();
+		dealHand(speletajs2, kava);
+		
+		System.out.println(speletajs.getAnswers());
+		System.out.println(speletajs2.getAnswers());
+		
+		*/
 
 	}
 
@@ -93,6 +111,16 @@ public class MainService {
 				}
 			}
 		}
+	}
+
+	public static void dealHand(Player player, Deck deck) {
+	    if(player != null && deck != null) {
+	        for (int i = 0; i < 5; i++) {
+	            player.getAnswers().add(deck.giveMeOneCard());
+	        }
+	    } else {
+	        System.out.println("Error: Player or deck object is null.");
+	    }
 	}
 
 }

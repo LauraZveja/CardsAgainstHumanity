@@ -43,7 +43,7 @@ public class AnswerCard {
 	}
 
 	public String toString() {
-		return "Answer card: " + answer + ", category: " + category + ", colour: " + colour;
+		return answer;
 	}
 
 }

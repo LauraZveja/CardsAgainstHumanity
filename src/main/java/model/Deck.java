@@ -15,7 +15,6 @@ public class Deck {
 	public Deck(Category category) {
 		createDeck();
 		shuffle();
-		print();
 	}
 
 	public void shuffle() {
