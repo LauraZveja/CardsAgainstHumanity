@@ -57,19 +57,23 @@ public class MainService {
 		// readAnswerDeckFirstCard(deck1);
 
 		// -------------- QUESTIONS ---------------------- //
-		QuestionDeck questionDeck = new QuestionDeck(Category.UNDER_18);
+		// QuestionDeck questionDeck = new QuestionDeck(Category.UNDER_18);
+
 		QuestionDeck questionDeck2 = new QuestionDeck(Category.ADULT);
+		readQuestionDeck(questionDeck2);
 
-		ArrayList<String> newQuestions = new ArrayList<>();
-		newQuestions.add("I swear to God I am gonna murder my husband if he does not shut up about _____");
-		newQuestions.add("Yo, is _____ racist?");
-		newQuestions.add("I have solved politics. My solution is ______");
-
-		updateQuestions(Category.ADULT, newQuestions);
-		readQuestionDeckFileByCategory(Category.ADULT);
-		deleteQuestionFromQuestionDeckByCategory(Category.ADULT,
-				"Instead of the Jews, Hitler should have worried more about ____.");
-		readQuestionDeckFileByCategory(Category.ADULT);
+		/*
+		 * ArrayList<String> newQuestions = new ArrayList<>(); newQuestions.
+		 * add("I swear to God I am gonna murder my husband if he does not shut up about _____"
+		 * ); newQuestions.add("Yo, is _____ racist?");
+		 * newQuestions.add("I have solved politics. My solution is ______");
+		 * 
+		 * updateQuestions(Category.ADULT, newQuestions);
+		 * readQuestionDeckFileByCategory(Category.ADULT);
+		 * deleteQuestionFromQuestionDeckByCategory(Category.ADULT,
+		 * "Instead of the Jews, Hitler should have worried more about ____.");
+		 * readQuestionDeckFileByCategory(Category.ADULT);
+		 */
 
 	}
 
