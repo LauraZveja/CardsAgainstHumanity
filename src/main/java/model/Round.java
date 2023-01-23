@@ -8,6 +8,7 @@ public class Round {
 	private int roundID;
 	private static byte idCounter = 0;
 	private QuestionCard questionCard;
+	private ArrayList<AnswerCard> playedAnswerCards;
 	private ArrayList<Vote> votes;
 	private ArrayList<QuestionCard> questionPerRound;
 
@@ -18,6 +19,10 @@ public class Round {
 	}
 
 	public QuestionCard getQuestionCard() {
+		return questionCard;
+	}
+
+	public QuestionCard playedAnswerCards() {
 		return questionCard;
 	}
 
@@ -34,6 +39,14 @@ public class Round {
 	public void setRoundID() {
 		this.roundID = idCounter;
 		idCounter++;
+	}
+
+	public void setPlayedAnswerCards(ArrayList<AnswerCard> playedAnswerCards) {
+		if (playedAnswerCards != null) {
+			this.playedAnswerCards = playedAnswerCards;
+		} else {
+			this.playedAnswerCards = new ArrayList<AnswerCard>();
+		}
 	}
 
 	public void setQuestionCard(QuestionCard questionCard) {
@@ -64,25 +77,27 @@ public class Round {
 
 	public Round() {
 		setRoundID();
-		setQuestionCard(questionCard);
-		setVotes(votes);
-		setQuestionPerRound(questionPerRound);
-	}
-
-	public Round(QuestionCard questionCard, ArrayList<Vote> votes, ArrayList<QuestionCard> questionPerRound) {
-		setRoundID();
 		setQuestionCard(new QuestionCard());
+		setPlayedAnswerCards(new ArrayList<AnswerCard>());
 		setVotes(new ArrayList<Vote>());
 		setQuestionPerRound(new ArrayList<QuestionCard>());
 	}
 
+	public Round(QuestionCard questionCard, ArrayList<AnswerCard> playedAnswerCards, ArrayList<Vote> votes,
+			ArrayList<QuestionCard> questionPerRound) {
+		setRoundID();
+		setQuestionCard(questionCard);
+		setPlayedAnswerCards(playedAnswerCards);
+		setVotes(votes);
+		setQuestionPerRound(questionPerRound);
+	}
+
 	// toString
 
-	// TODO: Precizēt, kad Question klase ir gatava
 	@Override
 	public String toString() {
-		return "Round [roundID=" + roundID + ", questionCard=" + questionCard + ", votes=" + votes
-				+ ", questionPerRound=" + questionPerRound + "]";
+		return "Round [roundID=" + roundID + ", questionCard=" + questionCard.getQuestion() + ", playedAnswerCards="
+				+ playedAnswerCards + ", votes=" + votes + ", questionPerRound=" + questionPerRound.toString() + "]";
 	}
 
 }

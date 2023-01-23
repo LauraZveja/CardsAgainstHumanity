@@ -7,8 +7,8 @@ public class Vote {
 	private Round round;
 	private QuestionCard questionCard;
 	private AnswerCard answerCard;
-	private Player player;
-	private byte voteCount;
+	private Player playerWhoVoted;
+	private Player playerVotedAbout;
 	private static int counter;
 
 	// getters
@@ -28,12 +28,12 @@ public class Vote {
 		return answerCard;
 	}
 
-	public Player getPlayer() {
-		return player;
+	public Player playerWhoVoted() {
+		return playerWhoVoted;
 	}
 
-	public byte getVoteCount() {
-		return voteCount;
+	public Player playerVotedAbout() {
+		return playerVotedAbout;
 	}
 
 	// setters
@@ -62,50 +62,41 @@ public class Vote {
 	public void setAnswerCard(AnswerCard answerCard) {
 		if (answerCard != null) {
 			this.answerCard = answerCard;
-		} 
-	}
-
-	public void setPlayer(Player player) {
-		if (player != null) {
-			this.player = player;
-		} else {
-			this.player = new Player();
 		}
 	}
 
-	public void setVoteCount(byte voteCount) {
-		if (voteCount > 0 && voteCount < 11) {
-			this.voteCount = voteCount;
+	public void setPlayerWhoVoted(Player playerWhoVoted) {
+		if (playerWhoVoted != null) {
+			this.playerWhoVoted = playerWhoVoted;
 		} else {
-			this.voteCount = 0;
+			this.playerWhoVoted = new Player();
 		}
+	}
 
+	public void setPlayerVotedAbout(Player playerVotedAbout) {
+		if (playerVotedAbout != null) {
+			this.playerVotedAbout = playerVotedAbout;
+		} else {
+			this.playerWhoVoted = new Player();
+		}
 	}
 
 	// constructors
-	public Vote(Round round, QuestionCard questionCard, AnswerCard answerCard, Player player, byte voteCount) {
+	public Vote(Round round, QuestionCard questionCard, AnswerCard answerCard, Player playerWhoVoted,
+			Player playerVotedAbout) {
 		setVoteID();
 		setRound(round);
 		setQuestionCard(questionCard);
 		setAnswerCard(answerCard);
-		setPlayer(player);
-		setVoteCount(voteCount);
+		setPlayerWhoVoted(playerWhoVoted);
+		setPlayerVotedAbout(playerVotedAbout);
 	}
 
-	public Vote() {
-		setVoteID();
-		setRound(new Round());
-		setQuestionCard(new QuestionCard());
-		//setAnswerCard(new AnswerCard());
-		setPlayer(new Player());
-		setVoteCount((byte) 0);
-	}
-
-	// TODO: Kad pabeigtas Q&A kārtis, precizēt
 	@Override
 	public String toString() {
-		return "Vote [voteID=" + voteID + ", round=" + round.getRoundID() + ", questionCard=" + questionCard
-				+ ", answerCard=" + answerCard + ", player=" + player.getUserName() + ", voteCount=" + voteCount + "]";
+		return "Vote [voteID=" + voteID + ", round=" + round.getRoundID() + ", questionCard="
+				+ questionCard.getQuestion() + ", answerCard=" + answerCard.getAnswer() + ", playerWhoVoted="
+				+ playerWhoVoted.getUserName() + ", playerVotedAbout=" + playerVotedAbout.getUserName() + "]";
 	}
 
 }
