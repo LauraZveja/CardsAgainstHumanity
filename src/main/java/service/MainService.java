@@ -2,6 +2,7 @@ package service;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -35,21 +36,21 @@ public class MainService {
 		 * Print the contents of the file System.out.println(line); } // Close the
 		 * reader reader.close(); } catch (IOException e) { e.printStackTrace(); }
 		 */
-		
-		
-		// Pārbaude, vai katram spēlētājam piešķir 5 dažādas atbilžu kārtis. 
+
+		// Pārbaude, vai katram spēlētājam piešķir 5 dažādas atbilžu kārtis.
 		/*
-		Player speletajs = new Player();
-		Deck kava = new Deck(Category.ADULT);
-		dealHand(speletajs, kava);
-		
-		Player speletajs2 = new Player();
-		dealHand(speletajs2, kava);
-		
-		System.out.println(speletajs.getAnswers());
-		System.out.println(speletajs2.getAnswers());
-		
-		*/
+		 * Player speletajs = new Player(); Deck kava = new Deck(Category.ADULT);
+		 * dealHand(speletajs, kava);
+		 * 
+		 * Player speletajs2 = new Player(); dealHand(speletajs2, kava);
+		 * 
+		 * System.out.println(speletajs.getAnswers());
+		 * System.out.println(speletajs2.getAnswers()); //
+		 * updateAnswerDeckByCategory(Category.ADULT, new_adult_answers);
+		 * //deleteAnswerFromAnswerDeckByCategory(Category.ADULT, "11111111111111");
+		 * //readAnswerDeckFileByCategory(Category.ADULT); Deck deck1 = new
+		 * Deck(Category.ADULT); readAnswerDeck(deck1);
+		 */
 
 	}
 
@@ -114,13 +115,59 @@ public class MainService {
 	}
 
 	public static void dealHand(Player player, Deck deck) {
-	    if(player != null && deck != null) {
-	        for (int i = 0; i < 5; i++) {
-	            player.getAnswers().add(deck.giveMeOneCard());
-	        }
-	    } else {
-	        System.out.println("Error: Player or deck object is null.");
-	    }
+		if (player != null && deck != null) {
+			for (int i = 0; i < 5; i++) {
+				player.getAnswers().add(deck.giveMeOneCard());
+			}
+		} else {
+			System.out.println("Error: Player or deck object is null.");
+		}
+	}
+
+	// READ FILE
+	public static void readAnswerDeckFileByCategory(Category category) {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/" + category + ".txt"));
+			String line;
+			while ((line = reader.readLine()) != null) {
+
+				System.out.println(line);
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// READ DECK
+	public static void readAnswerDeck(Deck deck) {
+		deck.toString();
+	}
+
+	// READ 1st CARD
+	public static void readAnswerDeckFirstCard(Deck deck) {
+		System.out.println(deck.getAnswerCards().get(0));
+	}
+
+	// DELTE ANSWER
+
+	public static void deleteAnswerFromAnswerDeckByCategory(Category category, String unwanted_Answer) {
+		File file = new File("src/main/resources/" + category + ".txt");
+		StringBuilder temp_answers = new StringBuilder();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (!line.replaceAll("[\\.,'!]", "").equalsIgnoreCase(unwanted_Answer.replaceAll("[\\.,'!]", ""))) {
+					temp_answers.append(line + "\n");
+				}
+			}
+			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+			bw.write(temp_answers.toString());
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

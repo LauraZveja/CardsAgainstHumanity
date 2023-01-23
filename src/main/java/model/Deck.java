@@ -12,6 +12,10 @@ public class Deck {
 	private ArrayList<AnswerCard> answerCards = new ArrayList<AnswerCard>();
 	private Category category;
 
+	public ArrayList<AnswerCard> getAnswerCards() {
+		return answerCards;
+	}
+
 	public Deck(Category category) {
 		createDeck();
 		shuffle();
