@@ -7,6 +7,7 @@ public class Round {
 	// variables
 	private int roundID;
 	private static byte idCounter = 0;
+	private int gameLobby_ID;
 	private QuestionCard questionCard;
 	private ArrayList<AnswerCard> playedAnswerCards;
 	private ArrayList<Vote> votes;
@@ -15,6 +16,10 @@ public class Round {
 	// getters
 
 	public int getRoundID() {
+		return roundID;
+	}
+
+	public int getGameLobby_ID() {
 		return roundID;
 	}
 
@@ -39,6 +44,14 @@ public class Round {
 	public void setRoundID() {
 		this.roundID = idCounter;
 		idCounter++;
+	}
+
+	public void setGameLobby_ID(int gameLobby_ID) {
+		if (gameLobby_ID > 0 && gameLobby_ID < Integer.MAX_VALUE) {
+			this.gameLobby_ID = gameLobby_ID;
+		} else {
+			this.gameLobby_ID = -1;
+		}
 	}
 
 	public void setPlayedAnswerCards(ArrayList<AnswerCard> playedAnswerCards) {
@@ -96,8 +109,9 @@ public class Round {
 
 	@Override
 	public String toString() {
-		return "Round [roundID=" + roundID + ", questionCard=" + questionCard.getQuestion() + ", playedAnswerCards="
-				+ playedAnswerCards + ", votes=" + votes + ", questionPerRound=" + questionPerRound.toString() + "]";
+		return "Round [roundID=" + roundID + "game lobby=" + gameLobby_ID + ", questionCard="
+				+ questionCard.getQuestion() + ", playedAnswerCards=" + playedAnswerCards + ", votes=" + votes
+				+ ", questionPerRound=" + questionPerRound.toString() + "]";
 	}
 
 }
