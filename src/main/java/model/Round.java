@@ -90,15 +90,17 @@ public class Round {
 
 	public Round() {
 		setRoundID();
+		setGameLobby_ID(-1);
 		setQuestionCard(new QuestionCard());
 		setPlayedAnswerCards(new ArrayList<AnswerCard>());
 		setVotes(new ArrayList<Vote>());
 		setQuestionPerRound(new ArrayList<QuestionCard>());
 	}
 
-	public Round(QuestionCard questionCard, ArrayList<AnswerCard> playedAnswerCards, ArrayList<Vote> votes,
-			ArrayList<QuestionCard> questionPerRound) {
+	public Round(int gameLobby_ID, QuestionCard questionCard, ArrayList<AnswerCard> playedAnswerCards,
+			ArrayList<Vote> votes, ArrayList<QuestionCard> questionPerRound) {
 		setRoundID();
+		setGameLobby_ID(gameLobby_ID);
 		setQuestionCard(questionCard);
 		setPlayedAnswerCards(playedAnswerCards);
 		setVotes(votes);
