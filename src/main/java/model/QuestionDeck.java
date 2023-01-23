@@ -62,4 +62,9 @@ public class QuestionDeck {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "QuestionDeck [questionCards=" + questionCards + ", category=" + category + "]";
+	}
+
 }

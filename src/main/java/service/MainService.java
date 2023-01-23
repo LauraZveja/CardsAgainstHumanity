@@ -8,10 +8,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import model.AnswerCard;
 import model.Category;
 import model.Deck;
 import model.Player;
+import model.QuestionDeck;
 
 public class MainService {
 
@@ -52,10 +52,28 @@ public class MainService {
 		 */
 		Deck deck1 = new Deck(Category.ADULT);
 		readAnswerDeck(deck1);
+
 		// System.out.println(deck1);
 		// readAnswerDeckFirstCard(deck1);
 
+		// -------------- QUESTIONS ---------------------- //
+		QuestionDeck questionDeck = new QuestionDeck(Category.UNDER_18);
+		QuestionDeck questionDeck2 = new QuestionDeck(Category.ADULT);
+
+		ArrayList<String> newQuestions = new ArrayList<>();
+		newQuestions.add("I swear to God I am gonna murder my husband if he does not shut up about _____");
+		newQuestions.add("Yo, is _____ racist?");
+		newQuestions.add("I have solved politics. My solution is ______");
+
+		updateQuestions(Category.ADULT, newQuestions);
+		readQuestionDeckFileByCategory(Category.ADULT);
+		deleteQuestionFromQuestionDeckByCategory(Category.ADULT,
+				"Instead of the Jews, Hitler should have worried more about ____.");
+		readQuestionDeckFileByCategory(Category.ADULT);
+
 	}
+
+	// -------------------- ANSWERS --------------- //
 
 	public static void insertAnswer(Category category, String newAnswer) {
 		try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/" + category + ".txt"))) {
@@ -167,6 +185,114 @@ public class MainService {
 			}
 			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 			bw.write(temp_answers.toString());
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// -------------------- QUESTIONS --------------- //
+
+	// READ QUESTION DECK
+	public static void readQuestionDeck(QuestionDeck questionDeck) {
+		System.out.println(questionDeck);
+	}
+
+	// READ QUESTION DECK 1ST CARD
+	public static void readQuestionDeckFirstCard(QuestionDeck questionDeck) {
+		System.out.println(questionDeck.getQuestionCards().get(0).getQuestion());
+	}
+
+	// READ FILE
+	public static void readQuestionDeckFileByCategory(Category category) {
+		try {
+			BufferedReader reader = new BufferedReader(
+					new FileReader("src/main/resources/QUESTIONS_" + category + ".txt"));
+			String line;
+			while ((line = reader.readLine()) != null) {
+
+				System.out.println(line);
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// CREATE QUESTION
+
+	public static void insertQuestion(Category category, String newQuestion) {
+		try (BufferedReader br = new BufferedReader(
+				new FileReader("src/main/resources/QUESTIONS_" + category + ".txt"))) {
+			String line;
+			boolean alreadyExist = false;
+			while ((line = br.readLine()) != null) {
+				if (line.replaceAll("[\\.,'!]", "").equalsIgnoreCase(newQuestion.replaceAll("[\\.,'!]", ""))) {
+					alreadyExist = true;
+					break;
+				}
+			}
+			if (!alreadyExist) {
+				try (BufferedWriter bw = new BufferedWriter(
+						new FileWriter("src/main/resources/QUESTIONS_" + category + ".txt", true))) {
+					bw.write(newQuestion);
+					bw.newLine();
+				}
+			} else {
+				System.out.println("Question already exists in the file");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// UPDATE QUESTION
+	public static void updateQuestions(Category category, ArrayList<String> newQuestions) {
+		if (newQuestions != null) {
+			for (String new_question : newQuestions) {
+				try (BufferedReader br = new BufferedReader(
+						new FileReader("src/main/resources/QUESTIONS_" + category + ".txt"))) {
+					String line;
+					boolean alreadyExist = false;
+					while ((line = br.readLine()) != null) {
+						if (line.replaceAll("[\\.,']", "").equalsIgnoreCase(new_question.replaceAll("[\\.,']", ""))) {
+							alreadyExist = true;
+							break;
+						}
+					}
+					if (!alreadyExist) {
+						try (BufferedWriter bw = new BufferedWriter(
+								new FileWriter("src/main/resources/QUESTIONS_" + category + ".txt", true))) {
+							if ((line = br.readLine()) == null) {
+								bw.newLine();
+							}
+							bw.write(new_question);
+						}
+					} else {
+						System.err.println("Question already exists in the file");
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	// DELETE QUESTION
+
+	public static void deleteQuestionFromQuestionDeckByCategory(Category category, String unwanted_Question) {
+		File file = new File("src/main/resources/QUESTIONS_" + category + ".txt");
+		StringBuilder temp_questions = new StringBuilder();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (!line.replaceAll("[\\.,'!]", "").equalsIgnoreCase(unwanted_Question.replaceAll("[\\.,'!]", ""))) {
+					temp_questions.append(line + "\n");
+				}
+			}
+			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+			bw.write(temp_questions.toString());
 			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
