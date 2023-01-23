@@ -16,9 +16,10 @@ public class Deck {
 		return answerCards;
 	}
 
-	public Deck(Category category) {
-		createDeck();
+	public Deck(Category newDeckCategory) {
+		createDeck(newDeckCategory);
 		shuffle();
+		this.category = newDeckCategory;
 	}
 
 	public void shuffle() {
@@ -44,17 +45,22 @@ public class Deck {
 		return temp;
 	}
 
-	public void createDeck() {
-		try (BufferedReader br = new BufferedReader(
-				new InputStreamReader(this.getClass().getResourceAsStream("/ADULT.txt")))) {
+	public void createDeck(Category newDeckCategory) {
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(
+				this.getClass().getResourceAsStream("/" + newDeckCategory.toString() + ".txt")))) {
 			String line;
 			while ((line = br.readLine()) != null) {
-				AnswerCard card = new AnswerCard(line, category, Colour.WHITE);
+				AnswerCard card = new AnswerCard(line, newDeckCategory, Colour.WHITE);
 				answerCards.add(card);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Deck [answerCards=" + answerCards + ", category=" + category + "]";
 	}
 
 }

@@ -48,9 +48,12 @@ public class MainService {
 		 * System.out.println(speletajs2.getAnswers()); //
 		 * updateAnswerDeckByCategory(Category.ADULT, new_adult_answers);
 		 * //deleteAnswerFromAnswerDeckByCategory(Category.ADULT, "11111111111111");
-		 * //readAnswerDeckFileByCategory(Category.ADULT); Deck deck1 = new
-		 * Deck(Category.ADULT); readAnswerDeck(deck1);
+		 * //readAnswerDeckFileByCategory(Category.ADULT);
 		 */
+		Deck deck1 = new Deck(Category.ADULT);
+		readAnswerDeck(deck1);
+		// System.out.println(deck1);
+		// readAnswerDeckFirstCard(deck1);
 
 	}
 
@@ -141,7 +144,7 @@ public class MainService {
 
 	// READ DECK
 	public static void readAnswerDeck(Deck deck) {
-		deck.toString();
+		System.out.println(deck.toString());
 	}
 
 	// READ 1st CARD
