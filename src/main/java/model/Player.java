@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Player extends User{
-	private static int playerCounter = 1;
 	private int playerID;
 	private ArrayList<AnswerCard> answers = new ArrayList<>();
 	private int scorePerRound;
@@ -14,8 +13,7 @@ public class Player extends User{
 		return playerID;
 	}
 	public void setPlayerID() {
-		this.playerID = playerCounter;
-		playerCounter++;
+		this.playerID = DatabaseUtils.getLastPlayerID()+1;
 	}
 	public ArrayList<AnswerCard> getAnswers() {
 		return answers;
@@ -51,25 +49,21 @@ public class Player extends User{
 	public Player() {
 		super();
 		setPlayerID();
-		setAnswers(new ArrayList<AnswerCard>());
 		setScorePerRound(0);
 		setScore(0);
 	}
 	
-	public Player(String password, String userName, Calendar dateOfBirth, ArrayList<AnswerCard> answers,
-			int scorePerRound, int score) {
+	public Player(String password, String userName, Calendar dateOfBirth, int scorePerRound, int score) {
 		super(password, userName, dateOfBirth);
 		setPlayerID();
-		setAnswers(answers);
 		setScorePerRound(scorePerRound);
 		setScore(score);
 	}
 	
 	public Player(String password, String userName, Calendar dateOfBirth, String email, Gender gender, Country country,
-			int playerID, ArrayList<AnswerCard> answers, int scorePerRound, int score) {
+			int playerID, int scorePerRound, int score) {
 		super(password, userName, dateOfBirth, email, gender, country);
 		setPlayerID();
-		setAnswers(answers);
 		setScorePerRound(scorePerRound);
 		setScore(score);
 	}

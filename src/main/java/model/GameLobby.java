@@ -14,7 +14,6 @@ public class GameLobby {
 	private ArrayList<QuestionCard> questions = new ArrayList<>();
 	private ArrayList<AnswerCard> answerDeck = new ArrayList<>();
 	private LocalDate gameDate;
-	private static byte idCounter = 0;
 
 	// GET FUNCTIONS-----------------------------------------
 
@@ -42,10 +41,6 @@ public class GameLobby {
 		return answerDeck;
 	}
 
-	public static byte getIdCounter() {
-		return idCounter;
-	}
-
 	public LocalDate getGameDate() {
 		return gameDate;
 	}
@@ -53,8 +48,7 @@ public class GameLobby {
 	// SET FUNCTIONS-----------------------------------------
 
 	public void setGameLobby_ID() {
-		this.gameLobby_ID = idCounter;
-		idCounter++;
+		this.gameLobby_ID = DatabaseUtils.getLastLobbyID()+1;
 	}
 
 	public void setRoundCount(byte inputRoundCount) {

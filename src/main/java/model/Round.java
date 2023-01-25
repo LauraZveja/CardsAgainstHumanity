@@ -6,7 +6,6 @@ public class Round {
 
 	// variables
 	private int roundID;
-	private static byte idCounter = 0;
 	private int gameLobby_ID;
 	private QuestionCard questionCard;
 	private ArrayList<AnswerCard> playedAnswerCards;
@@ -42,8 +41,7 @@ public class Round {
 	// setters
 
 	public void setRoundID() {
-		this.roundID = idCounter;
-		idCounter++;
+		this.roundID = DatabaseUtils.getLastRoundID()+1;
 	}
 
 	public void setGameLobby_ID(int gameLobby_ID) {
