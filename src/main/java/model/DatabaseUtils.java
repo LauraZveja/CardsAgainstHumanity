@@ -227,19 +227,6 @@ public class DatabaseUtils {
     	}
     	return 0;
     }
-    
-    public static int getLastRoundID() {
-    	try (Connection connection = getConnection()) {
-    		Statement statement = connection.createStatement();
-    		ResultSet resultSet = statement.executeQuery("SELECT roundid FROM GameHistory ORDER BY roundid DESC LIMIT 1");
-    		if (resultSet.next()) {
-    			return resultSet.getInt("roundid");
-    		}
-    	} catch (SQLException e) {
-    	e.printStackTrace();
-    	}
-    	return 0;
-    }
    
     
 }

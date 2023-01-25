@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Round {
 
 	// variables
+	private static byte idCounter = 0;
 	private int roundID;
 	private int gameLobby_ID;
 	private QuestionCard questionCard;
@@ -41,7 +42,8 @@ public class Round {
 	// setters
 
 	public void setRoundID() {
-		this.roundID = DatabaseUtils.getLastRoundID()+1;
+		this.roundID = idCounter;
+		idCounter++;
 	}
 
 	public void setGameLobby_ID(int gameLobby_ID) {
