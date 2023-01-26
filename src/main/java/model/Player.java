@@ -66,7 +66,7 @@ public class Player extends User{
 	@Override
 	public String toString() {
 		return "Player [playerID=" + playerID + ", answers=" + answers + ", scorePerRound=" + scorePerRound + ", score="
-				+ score + "]";
+				+ score + "]" + super.toString();
 	}
 	
 	

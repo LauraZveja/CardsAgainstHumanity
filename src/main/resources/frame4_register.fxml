@@ -94,7 +94,7 @@
                </VBox.margin>
             </Label>
             <ComboBox fx:id="genderComboBox" prefWidth="150.0"/>
-            <Label prefHeight="25.0" prefWidth="135.0" text="Country:">
+            <Label fx:id="country" prefHeight="25.0" prefWidth="135.0" text="Country:">
                <font>
                   <Font size="18.0" />
                </font>
@@ -105,7 +105,7 @@
                   <Insets top="55.0" />
                </VBox.margin>
             </Label>
-            <ComboBox prefWidth="150.0" />
+            <ComboBox fx:id="countryComboBox" prefWidth="150.0" />
          </children>
       </VBox>
    </children>
