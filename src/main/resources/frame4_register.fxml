@@ -93,7 +93,7 @@
                   <Insets top="55.0" />
                </VBox.margin>
             </Label>
-            <ComboBox fx:id="genderComboBox" prefWidth="150.0" items="${model.Gender}" />
+            <ComboBox fx:id="genderComboBox" prefWidth="150.0"/>
             <Label prefHeight="25.0" prefWidth="135.0" text="Country:">
                <font>
                   <Font size="18.0" />

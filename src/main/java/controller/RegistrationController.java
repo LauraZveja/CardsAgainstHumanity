@@ -54,17 +54,16 @@ public class RegistrationController {
 	
 	@FXML
 	private ComboBox<Gender> genderComboBox;
-
+	
 	private Gender selectedGender;
 	
-	
+	@FXML
 	private void initialize() {
 		genderComboBox.setItems(FXCollections.observableArrayList(Gender.values()));
 		genderComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             selectedGender = newValue;
         });
 	}
-	
 	
 	public void backToMainScreen() {
 		
