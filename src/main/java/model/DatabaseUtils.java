@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class DatabaseUtils {
     private static final String URL = "jdbc:sqlite:cah.db";
@@ -226,6 +227,28 @@ public class DatabaseUtils {
     		e.printStackTrace();
     	}
     	return 0;
+    }
+    
+    public static ArrayList<String[]> getTopVotedPlayers() {
+        ArrayList<String[]> top3 = new ArrayList<>();
+        try (Connection connection = getConnection()) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT playerid, COUNT(playerid) as votes FROM GameHistory GROUP BY playerid ORDER BY votes DESC LIMIT 3");
+            while (resultSet.next()) {
+                int playerid = resultSet.getInt("playerid");
+                int votes = resultSet.getInt("votes");
+                PreparedStatement ps = connection.prepareStatement("SELECT username FROM players WHERE id=?");
+                ps.setInt(1, playerid);
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    String username = rs.getString("username");
+                    top3.add(new String[] {username, String.valueOf(votes)});
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return top3;
     }
    
     
