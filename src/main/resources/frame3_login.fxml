@@ -24,7 +24,7 @@
                <Font name="Impact" size="48.0" />
             </font>
          </Text>
-         <Button layoutX="727.0" layoutY="14.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="84.0" style="-fx-background-color: brown;" text="Return to Main Menu" textAlignment="CENTER" wrapText="true">
+         <Button fx:id="buttonReturnToMainMenuFromLogin" layoutX="727.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnToMainMenuFromLogin" prefHeight="71.0" prefWidth="84.0" style="-fx-background-color: brown;" text="Return to Main Menu" textAlignment="CENTER" wrapText="true">
             <font>
                <Font name="System Bold" size="14.0" />
             </font>
@@ -53,7 +53,7 @@
                </HBox>
             </children>
          </VBox>
-         <Button fx:id="buttonSavePlayer" layoutX="353.0" layoutY="418.0" mnemonicParsing="false" onAction="#saveButtonClick" prefHeight="42.0" prefWidth="119.0" text="Login">
+         <Button fx:id="buttonLoginUser" layoutX="353.0" layoutY="418.0" mnemonicParsing="false" onAction="#loginButtonClick" prefHeight="42.0" prefWidth="119.0" text="Login">
             <font>
                <Font size="18.0" />
             </font>

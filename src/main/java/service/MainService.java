@@ -17,10 +17,10 @@ import model.Deck;
 import model.Player;
 import model.QuestionDeck;
 
-public class MainService extends Application{
+public class MainService extends Application {
 
 	public static void main(String[] args) {
-		
+
 		launch(args);
 
 		// insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte!");
@@ -56,8 +56,8 @@ public class MainService extends Application{
 		 * //deleteAnswerFromAnswerDeckByCategory(Category.ADULT, "11111111111111");
 		 * //readAnswerDeckFileByCategory(Category.ADULT);
 		 */
-		Deck deck1 = new Deck(Category.ADULT);
-		readAnswerDeck(deck1);
+		// Deck deck1 = new Deck(Category.ADULT);
+		// readAnswerDeck(deck1);
 
 		// System.out.println(deck1);
 		// readAnswerDeckFirstCard(deck1);
@@ -65,8 +65,8 @@ public class MainService extends Application{
 		// -------------- QUESTIONS ---------------------- //
 		// QuestionDeck questionDeck = new QuestionDeck(Category.UNDER_18);
 
-		QuestionDeck questionDeck2 = new QuestionDeck(Category.ADULT);
-		readQuestionDeck(questionDeck2);
+		// QuestionDeck questionDeck2 = new QuestionDeck(Category.ADULT);
+		// readQuestionDeck(questionDeck2);
 
 		/*
 		 * ArrayList<String> newQuestions = new ArrayList<>(); newQuestions.
@@ -308,18 +308,16 @@ public class MainService extends Application{
 			e.printStackTrace();
 		}
 	}
-	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-	
-		
+
 		Scene scene = FXMLLoader.load(getClass().getResource("/frame1_main.fxml"));
-		
-		//Stage objektam uzstādīt izveidoto scene
+
+		// Stage objektam uzstādīt izveidoto scene
 		primaryStage.setScene(scene);
-		
-		//Stage objekut parādīt
+
+		// Stage objekut parādīt
 		primaryStage.show();
 	}
 
