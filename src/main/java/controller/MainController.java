@@ -33,4 +33,20 @@ public class MainController {
 
 	}
 
+	@FXML
+	private Button login;
+
+	@FXML
+	public void clickLogin() {
+		try {
+			Scene scene_old = login.getScene();
+			Stage stage_primary = (Stage) scene_old.getWindow();
+			Scene scene_new = FXMLLoader.load(getClass().getResource("/frame3_login.fxml"));
+			stage_primary.setScene(scene_new);
+			stage_primary.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
