@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
     <AnchorPane prefHeight="508.0" prefWidth="820.0">
       <children>
          <Text layoutX="11.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARDS AGAINST HUMANITY" textAlignment="CENTER" wrappingWidth="813.7366938591003">

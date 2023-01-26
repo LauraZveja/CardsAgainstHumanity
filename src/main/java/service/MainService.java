@@ -8,103 +8,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import model.Category;
 import model.Deck;
 import model.Player;
 import model.QuestionDeck;
 
-public class MainService {
+public class MainService extends Application{
 
 	public static void main(String[] args) {
 		
-		
-		/* -----------------------SEIT SAKAS DATUBAZES TESTS-----------------------
-		  try {
-			DatabaseUtils.createDatabase();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Player p1 = new Player("parole123", "username123", new GregorianCalendar(2002, Calendar.DECEMBER, 31), "epasts@gmail.com", Gender.MALE, Country.LATVIA, 0, 0, 0); // 18 sanak
-		try {
-			DatabaseUtils.savePlayerToDB(p1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		Player p2 = new Player("citaparole", "citsusername", new GregorianCalendar(2010, Calendar.DECEMBER, 31), "citsepasts@gmail.com", Gender.MALE, Country.LATVIA, 0, 0, 0); // sim nesanaks 18
-		try {
-			DatabaseUtils.savePlayerToDB(p2);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		Player p3 = new Player();
-		try {
-			DatabaseUtils.savePlayerToDB(p3);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		Player p4 = new Player();
-		try {
-			DatabaseUtils.savePlayerToDB(p4);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		GameLobby gl1 = new GameLobby();
-		
-		try {
-			DatabaseUtils.saveGameLobbyToDB(gl1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		Round r1 = new Round();
-		
-		Vote v1 = new Vote(r1, null, p1, p2);
-		Vote v2 = new Vote(r1, null, p2, p1);
-		Vote v3 = new Vote(r1, null, p3, p1);
-		Vote v4 = new Vote(r1, null, p4, p1);
-		ArrayList<Vote> votes = new ArrayList<Vote>();
-		votes.add(v1);
-		votes.add(v2);
-		votes.add(v3);
-		votes.add(v4);
-		r1.setVotes(votes);
-		
-		try {
-			DatabaseUtils.saveVotesToDB(r1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		int player_id = DatabaseUtils.getPlayerIdByUsername(p1.getUserName());
-		System.out.println("Player_id: "+player_id);
-		
-		int totalScoreByUsername = DatabaseUtils.getTotalScoreByUsername(p1.getUserName());
-		System.out.println("TotalScoreByUsername: "+totalScoreByUsername);
-		
-		int TSBUAGID = DatabaseUtils.getTotalScoreByUsernameAndGameID(p1.getUserName(), 0);
-		System.out.println("TSBUAGID: "+TSBUAGID);
-		
-		boolean isAdult = DatabaseUtils.isPlayerAnAdult(p1.getUserName());
-		System.out.println("Vai ir virs 18?: "+isAdult);
-		boolean isAdult2 = DatabaseUtils.isPlayerAnAdult(p2.getUserName());
-		System.out.println("A sim ir 18?: "+isAdult2);
-		
-		boolean isUsernameTaken = DatabaseUtils.isUsernameTaken(p1.getUserName());
-		boolean isUsernameTaken2 = DatabaseUtils.isUsernameTaken("simjaatgriezfalse");
-		System.out.println("IsUsernameTaken: "+isUsernameTaken+ " IsUsernameTaken2: "+isUsernameTaken2);
-		
-		boolean correctpassword = DatabaseUtils.isPlayerPasswordCorrect(p1.getUserName(), p1.getPassword());
-		boolean correctpassword1 = DatabaseUtils.isPlayerPasswordCorrect(p1.getUserName(), "simjaatgriezfalse");
-		System.out.println("Parole1 pareiza: "+ correctpassword+"; parole2 pareiza: "+correctpassword1);
-		
-		
-		boolean isEmailTaken = DatabaseUtils.isEmailTaken(p1.getEmail());
-		boolean isEmailTaken2 = DatabaseUtils.isEmailTaken("atgriezamfalse@gmail.com");
-		System.out.println("Epasts taken?: "+isEmailTaken+ " email2: "+isEmailTaken2);
-		 -----------------------SEIT BEIDZAS DATUBAZES TESTS-----------------------*/
-		
+		launch(args);
+
 		// insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte!");
 		// insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte");
 
@@ -389,6 +307,20 @@ public class MainService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+	
+		
+		Scene scene = FXMLLoader.load(getClass().getResource("/frame1_main.fxml"));
+		
+		//Stage objektam uzstādīt izveidoto scene
+		primaryStage.setScene(scene);
+		
+		//Stage objekut parādīt
+		primaryStage.show();
 	}
 
 }
