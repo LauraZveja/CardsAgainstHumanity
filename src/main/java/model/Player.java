@@ -53,19 +53,14 @@ public class Player extends User{
 		setScore(0);
 	}
 	
-	public Player(String password, String userName, Calendar dateOfBirth, int scorePerRound, int score) {
+	public Player(String password, String userName, Calendar dateOfBirth) {
 		super(password, userName, dateOfBirth);
-		setPlayerID();
-		setScorePerRound(scorePerRound);
-		setScore(score);
+		
 	}
 	
-	public Player(String password, String userName, Calendar dateOfBirth, String email, Gender gender, Country country,
-			int playerID, int scorePerRound, int score) {
+	public Player(String password, String userName, Calendar dateOfBirth, String email, Gender gender, Country country) {
 		super(password, userName, dateOfBirth, email, gender, country);
-		setPlayerID();
-		setScorePerRound(scorePerRound);
-		setScore(score);
+	
 	}
 	
 	@Override
