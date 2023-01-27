@@ -55,11 +55,13 @@ public class Player extends User{
 	
 	public Player(String password, String userName, Calendar dateOfBirth) {
 		super(password, userName, dateOfBirth);
+		setPlayerID();
 		
 	}
 	
 	public Player(String password, String userName, Calendar dateOfBirth, String email, Gender gender, Country country) {
 		super(password, userName, dateOfBirth, email, gender, country);
+		setPlayerID();
 	
 	}
 	
