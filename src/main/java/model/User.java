@@ -50,7 +50,7 @@ public class User {
 	}
 
 	public void setDateOfBirth(Calendar dateOfBirth) {
-		Calendar checkDateBefore = new GregorianCalendar(2005, Calendar.DECEMBER, 31);
+		Calendar checkDateBefore = new GregorianCalendar(2010, Calendar.DECEMBER, 31);
 		Calendar checkDateAfter = new GregorianCalendar(1900, Calendar.DECEMBER, 31);
 
 		if (dateOfBirth.after(checkDateAfter) && dateOfBirth.before(checkDateBefore)) {
@@ -118,7 +118,7 @@ public class User {
 	public User() {
 		setPassword("password123!");
 		setUserName("Unknown");
-		setDateOfBirth(new GregorianCalendar(2006, Calendar.JANUARY, 1));
+		setDateOfBirth(new GregorianCalendar(2010, Calendar.JANUARY, 1));
 		setEmail("Unknown");
 		setRegistrationDate();
 		setGender(Gender.OTHER);
