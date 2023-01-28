@@ -31,7 +31,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="register" layoutX="408.0" layoutY="492.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="119.0" onAction="#register" text="Register">
+      <Button fx:id="register" layoutX="408.0" layoutY="492.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="119.0" onAction="#registerPlayer" text="Register">
          <font>
             <Font size="18.0" />
          </font>
@@ -43,7 +43,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="enteredUsername" prefHeight="25.0" prefWidth="231.0" />
+            <TextField fx:id="enteredUsername" prefHeight="25.0" onAction="#checkUsername" prefWidth="231.0" />
             <Text fill="#00000080" strokeType="OUTSIDE" strokeWidth="0.0" text="Unique, starts with number or letter, length: 5 - 20 characters." wrappingWidth="294.07421875">
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -57,7 +57,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <PasswordField fx:id="enteredPassword" prefHeight="25.0" prefWidth="145.0" />
+            <PasswordField fx:id="enteredPassword" prefHeight="25.0" onAction="#checkPassword" prefWidth="145.0" />
             <Text fill="#00000080" strokeType="OUTSIDE" strokeWidth="0.0" text="Must contain 1 number, 1 big letter, 1 small letter and 1 special character, 8 - 20 characters total" wrappingWidth="294.07421875">
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -71,7 +71,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <TextField fx:id="enteredEmail" prefHeight="25.0" prefWidth="148.0" />
+            <TextField fx:id="enteredEmail" prefHeight="25.0" onAction="#checkEmail" prefWidth="148.0" />
          </children>
       </VBox>
       <VBox layoutX="575.0" layoutY="155.0" prefHeight="276.0" prefWidth="135.0">
@@ -81,7 +81,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <DatePicker fx:id="enteredDoB" />
+           <DatePicker fx:id="enteredDoB" onAction="#checkDoB"/>
             <Label fx:id="gender" prefHeight="25.0" prefWidth="135.0" text="Gender:">
                <font>
                   <Font size="18.0" />
