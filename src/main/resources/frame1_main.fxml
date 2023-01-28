@@ -16,7 +16,7 @@
       </Text>
      <Button fx:id="register" layoutX="750.0" layoutY="500.0" mnemonicParsing="false" onAction="#clickRegister" prefHeight="50.0" prefWidth="206.0" text="Register" />
       <Button fx:id="login" layoutX="415.0" layoutY="500.0" mnemonicParsing="false" onAction="#clickLogin" prefHeight="50.0" prefWidth="206.0" text="Login" />
-      <Button layoutX="78.0" layoutY="500.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="243.0" text="View Highscore Board" />
+      <Button fx:id="highscore" layoutX="78.0" layoutY="500.0" mnemonicParsing="false" onAction="#clickHighscore" prefHeight="50.0" prefWidth="243.0" text="View Highscore Board" />
    </children>
 </AnchorPane>
 </Scene>

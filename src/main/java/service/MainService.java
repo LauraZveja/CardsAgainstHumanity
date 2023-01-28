@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -13,13 +14,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Category;
+import model.DatabaseUtils;
 import model.Deck;
 import model.Player;
 import model.QuestionDeck;
 
-public class MainService extends Application {
+class MainService extends Application {
 
 	public static void main(String[] args) {
+
+		try {
+			DatabaseUtils.createDatabase();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		launch(args);
 
