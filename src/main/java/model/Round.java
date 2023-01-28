@@ -116,4 +116,12 @@ public class Round {
 				+ ", questionPerRound=" + questionPerRound.toString() + "]";
 	}
 
+	public void addVote(Vote vote) {
+		if (votes != null) {
+			this.votes = votes;
+		} else {
+			this.votes.add(vote);
+		}
+	}
+
 }

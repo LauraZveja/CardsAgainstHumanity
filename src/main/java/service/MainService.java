@@ -6,11 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -26,7 +22,7 @@ import model.QuestionDeck;
 public class MainService extends Application {
 
 	public static void main(String[] args) {
-		
+
 		try {
 			DatabaseUtils.createDatabase();
 		} catch (SQLException e) {
@@ -38,11 +34,9 @@ public class MainService extends Application {
 		}
 
 		launch(args);
-		
-		
 
 		// insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte!");
-		// insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte");
+		// insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte")
 
 		/*
 		 * ArrayList<String> new_adult_answers = new ArrayList<>();

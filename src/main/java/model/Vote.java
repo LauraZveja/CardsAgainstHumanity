@@ -4,19 +4,14 @@ public class Vote {
 
 	// variables
 	private int voteID;
-	private Round round;
 	private AnswerCard answerCard;
 	private Player playerWhoVoted;
 	private Player playerVotedAbout;
-	private static int counter;
+	private static int counter = 1;
 
 	// getters
 	public int getVoteID() {
 		return voteID;
-	}
-
-	public Round getRound() {
-		return round;
 	}
 
 	public AnswerCard getAnswerCard() {
@@ -34,16 +29,8 @@ public class Vote {
 	// setters
 
 	public void setVoteID() {
-		this.voteID = voteID;
+		this.voteID = counter;
 		counter++;
-	}
-
-	public void setRound(Round round) {
-		if (round != null) {
-			this.round = round;
-		} else {
-			this.round = new Round();
-		}
 	}
 
 	public void setAnswerCard(AnswerCard answerCard) {
@@ -71,19 +58,18 @@ public class Vote {
 	}
 
 	// constructors
-	public Vote(Round round, AnswerCard answerCard, Player playerWhoVoted, Player playerVotedAbout) {
+	public Vote(AnswerCard answerCard, Player playerWhoVoted, Player playerVotedAbout) {
 		setVoteID();
-		setRound(round);
 		setAnswerCard(answerCard);
 		setPlayerWhoVoted(playerWhoVoted);
 		setPlayerVotedAbout(playerVotedAbout);
+
 	}
 
 	@Override
 	public String toString() {
-		return "Vote [voteID=" + voteID + ", round=" + round.getRoundID() + ", answerCard=" + answerCard.getAnswer()
-				+ ", playerWhoVoted=" + playerWhoVoted.getUserName() + ", playerVotedAbout="
-				+ playerVotedAbout.getUserName() + "]";
+		return "Vote [voteID=" + voteID + ", answerCard=" + answerCard.getAnswer() + ", playerWhoVoted="
+				+ playerWhoVoted.getUserName() + ", playerVotedAbout=" + playerVotedAbout.getUserName() + "]";
 	}
 
 }
