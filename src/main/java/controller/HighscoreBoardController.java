@@ -26,7 +26,6 @@ public class HighscoreBoardController implements Initializable {
 	@FXML
 	private TableColumn<Score, Integer> pointsColumn;
 
-	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// set up columns in the table
 		placeColumn.setCellValueFactory(new PropertyValueFactory<Score, Integer>("place"));
