@@ -324,7 +324,7 @@ public class MainService extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		Scene scene = FXMLLoader.load(getClass().getResource("/frame1_main.fxml"));
+		Scene scene = FXMLLoader.load(getClass().getResource("/frame7_vote.fxml"));
 
 		// Stage objektam uzstādīt izveidoto scene
 		primaryStage.setScene(scene);
