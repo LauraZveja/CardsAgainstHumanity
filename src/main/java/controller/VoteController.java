@@ -17,6 +17,11 @@ public class VoteController {
 	@FXML
 	private Button exitToLobby;
 	
+	@FXML
+	private Label questionText;
+	
+	
+	
 	
 	
 	public void backToLobby() {
@@ -41,9 +46,15 @@ public class VoteController {
 
 
 	public void initData(QuestionCard qc, AnswerCard radioAnswer) {
+		
+		questionText.setText(qc.getQuestion());
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
+	
 
 
 

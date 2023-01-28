@@ -106,6 +106,24 @@ public class SelectAnswerController {
 
 	// CREATE QUESTION DECK----------------------
 	QuestionDeck questionDeck = new QuestionDeck(category);
+	
+	private static QuestionCard qc;
+	
+	@FXML
+	  private Button buttonReturnToMainMenuFromLogin;
+
+	  @FXML
+	  public void returnToMainMenuFromSelectAnswer() {
+	    try {
+	      Scene scene_old = playTheAnswerButton.getScene();
+	      Stage stage_primary = (Stage) scene_old.getWindow();
+	      Scene scene_new = FXMLLoader.load(getClass().getResource("/frame5_lobby.fxml"));
+	      stage_primary.setScene(scene_new);
+	      stage_primary.show();
+	    } catch (IOException e) {
+	      e.printStackTrace();
+	    }
+	  }
 
 	public void initialize() {
 
@@ -154,7 +172,8 @@ public class SelectAnswerController {
 		// --------------QUESTION CARD--------------
 
 		// GET QUESTION CARD-------------------------
-		QuestionCard qc = questionDeck.giveMeOneQuestion();
+		qc = questionDeck.giveMeOneQuestion();
+		
 
 		// SHOW QUESTION CARD------------------------
 		questionText.setText(qc.getQuestion());
@@ -166,8 +185,8 @@ public class SelectAnswerController {
 	@FXML
 	public void clickPlayTheAnswerButton() {
 		AnswerCard radioAnswer;
-		QuestionCard qc = questionDeck.giveMeOneQuestion();
-		questionText.setText(qc.getQuestion());
+		//QuestionCard qc = questionDeck.giveMeOneQuestion();
+		//questionText.setText(qc.getQuestion());
 
 		if (radioAnswer_1.isSelected()) {
 			AnswerCard ac1 = answerDeck.giveMeOneCard();
@@ -208,17 +227,16 @@ public class SelectAnswerController {
 		try {
 	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/frame7_vote.fxml"));
 	        Parent votePane = loader.load();
+	        Scene voteScene = new Scene(votePane);
 	        VoteController controller = loader.getController();
 	        controller.initData(qc, radioAnswer);
 
-	        Scene scene_old = playTheAnswerButton.getScene();
-	        Stage stage_primary = (Stage) scene_old.getWindow();
-	        Scene voteScene = new Scene(votePane);
-
+	        Stage stage_primary = (Stage) playTheAnswerButton.getScene().getWindow();
 	        stage_primary.setScene(voteScene);
 	        stage_primary.show();
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
-	    }
+
+	}
 	}
