@@ -4,4 +4,7 @@
 .settings
 /bin/
 cah.db
+<<<<<<< HEAD
 cah.sql
+=======
+>>>>>>> refs/heads/master
