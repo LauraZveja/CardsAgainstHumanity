@@ -20,8 +20,14 @@ public class VoteController {
 	@FXML
 	private Label questionText;
 	
+	@FXML
+	private Label ComputerAnswer1;
 	
+	@FXML
+	private Label ComputerAnswer2;
 	
+	@FXML
+	private Label ComputerAnswer3;
 	
 	
 	public void backToLobby() {
@@ -45,16 +51,21 @@ public class VoteController {
 
 
 
-	public void initData(QuestionCard qc, AnswerCard radioAnswer) {
+	public void initData(QuestionCard qc, AnswerCard radioAnswer, AnswerCard computerAnswer1, AnswerCard computerAnswer2, AnswerCard computerAnswer3) {
 		
 		questionText.setText(qc.getQuestion());
-		// TODO Auto-generated method stub
+		ComputerAnswer1.setText(computerAnswer1.getAnswer());
+		ComputerAnswer2.setText(computerAnswer2.getAnswer());
+		ComputerAnswer3.setText(computerAnswer3.getAnswer());
+		
+		
+	}
+	
+	public void chosenByComputer1() {
 		
 	}
 
 
-
-	
 
 
 

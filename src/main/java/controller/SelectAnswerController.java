@@ -107,7 +107,12 @@ public class SelectAnswerController {
 	// CREATE QUESTION DECK----------------------
 	QuestionDeck questionDeck = new QuestionDeck(category);
 	
+	// STATIC VARIABLE INITIALIZATION TO BE USED BY VOTECONTROLLER
 	private static QuestionCard qc;
+	private static AnswerCard radioAnswer;
+	private static AnswerCard computerAnswer1;
+	private static AnswerCard computerAnswer2;
+	private static AnswerCard computerAnswer3;
 	
 	@FXML
 	  private Button buttonReturnToMainMenuFromLogin;
@@ -184,9 +189,10 @@ public class SelectAnswerController {
 
 	@FXML
 	public void clickPlayTheAnswerButton() {
-		AnswerCard radioAnswer;
-		//QuestionCard qc = questionDeck.giveMeOneQuestion();
-		//questionText.setText(qc.getQuestion());
+		
+		computerAnswer1 = answerDeck.giveMeOneCard();
+		computerAnswer2 = answerDeck.giveMeOneCard();
+		computerAnswer3 = answerDeck.giveMeOneCard();
 
 		if (radioAnswer_1.isSelected()) {
 			AnswerCard ac1 = answerDeck.giveMeOneCard();
@@ -229,7 +235,7 @@ public class SelectAnswerController {
 	        Parent votePane = loader.load();
 	        Scene voteScene = new Scene(votePane);
 	        VoteController controller = loader.getController();
-	        controller.initData(qc, radioAnswer);
+	        controller.initData(qc, radioAnswer, computerAnswer1, computerAnswer2, computerAnswer3);
 
 	        Stage stage_primary = (Stage) playTheAnswerButton.getScene().getWindow();
 	        stage_primary.setScene(voteScene);
