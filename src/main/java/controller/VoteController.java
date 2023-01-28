@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.AnswerCard;
+import model.QuestionCard;
 
 public class VoteController {
 	
@@ -33,6 +35,13 @@ public class VoteController {
 			e.printStackTrace();
 		}
 
+	}
+
+
+
+	public void initData(QuestionCard qc, AnswerCard radioAnswer) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

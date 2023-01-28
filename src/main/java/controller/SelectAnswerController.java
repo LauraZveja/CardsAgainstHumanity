@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -164,40 +165,52 @@ public class SelectAnswerController {
 
 	@FXML
 	public void clickPlayTheAnswerButton() {
+		AnswerCard radioAnswer;
 		QuestionCard qc = questionDeck.giveMeOneQuestion();
 		questionText.setText(qc.getQuestion());
 
 		if (radioAnswer_1.isSelected()) {
 			AnswerCard ac1 = answerDeck.giveMeOneCard();
 			answerText_1.setText(ac1.getAnswer());
+			radioAnswer = ac1;
 
 		} else {
 			if (radioAnswer_2.isSelected()) {
 				AnswerCard ac2 = answerDeck.giveMeOneCard();
 				answerText_2.setText(ac2.getAnswer());
+				radioAnswer = ac2;
 
 			} else {
 				if (radioAnswer_3.isSelected()) {
 					AnswerCard ac3 = answerDeck.giveMeOneCard();
 					answerText_3.setText(ac3.getAnswer());
+					radioAnswer = ac3;
 
 				} else {
 					if (radioAnswer_4.isSelected()) {
 						AnswerCard ac4 = answerDeck.giveMeOneCard();
 						answerText_4.setText(ac4.getAnswer());
+						radioAnswer = ac4;
 
 					} else {
 						AnswerCard ac5 = answerDeck.giveMeOneCard();
 						answerText_5.setText(ac5.getAnswer());
+						radioAnswer = ac5;
 					}
 				}
 			}
 		}
 		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/frame7_vote.fxml"));
+			Parent votePane = loader.load();
+			VoteController controller = loader.getController();
+			controller.initData(qc, radioAnswer);
+
 			Scene scene_old = playTheAnswerButton.getScene();
 			Stage stage_primary = (Stage) scene_old.getWindow();
-			Scene scene_new = FXMLLoader.load(getClass().getResource("/frame7_vote.fxml"));
-			stage_primary.setScene(scene_new);
+			Scene voteScene = new Scene(votePane);
+
+			stage_primary.setScene(voteScene);
 			stage_primary.show();
 		} catch (IOException e) {
 			e.printStackTrace();
