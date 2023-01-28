@@ -27,7 +27,7 @@
             <TableColumn prefWidth="173.0" text="Points" />
         </columns>
       </TableView>
-      <Button layoutX="836.0" layoutY="16.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="84.0" style="-fx-background-color: brown;" text="Exit" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="logoutButton" layoutX="836.0" layoutY="16.0" mnemonicParsing="false" onAction="#logout" prefHeight="71.0" prefWidth="84.0" style="-fx-background-color: brown;" text="Logout" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

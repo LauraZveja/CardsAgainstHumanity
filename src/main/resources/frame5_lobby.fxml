@@ -24,7 +24,7 @@
             <Font name="Impact" size="48.0" />
          </font>
       </Text>
-      <Button layoutX="836.0" layoutY="16.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="84.0" style="-fx-background-color: brown;" text="Logout" textAlignment="CENTER" wrapText="true">
+      <Button fx:id="logout" layoutX="836.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickLogout" prefHeight="71.0" prefWidth="84.0" style="-fx-background-color: brown;" text="Logout" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -36,7 +36,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField minWidth="-Infinity" prefHeight="25.0" prefWidth="167.0" />
+            <TextField fx:id="roundCount" minWidth="-Infinity" onAction="#checkRoundCount" prefHeight="25.0" prefWidth="167.0" />
             <Text fill="#00000080" strokeType="OUTSIDE" strokeWidth="0.0" text="1 - 127" wrappingWidth="150.0">
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -47,7 +47,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox prefWidth="150.0" />
+            <ComboBox fx:id="categoryComboBox" onAction="#checkCategory" prefWidth="150.0" />
          </children>
       </VBox>
       <Button fx:id="highscore" layoutX="522.0" layoutY="500.0" mnemonicParsing="false" onAction="#clickHighscore" prefHeight="42.0" prefWidth="224.0" text="View Highscore Board">
@@ -55,7 +55,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="242.0" layoutY="500.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="224.0" text="Start the mayhem!">
+      <Button fx:id="startGame" layoutX="242.0" layoutY="500.0" mnemonicParsing="false" onAction="#clickStartGame" prefHeight="42.0" prefWidth="224.0" text="Start the mayhem!">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -65,7 +65,7 @@
             <Font size="16.0" />
          </font>
       </Text>
-      <Label layoutX="103.0" layoutY="153.0" prefHeight="27.0" prefWidth="113.0" text="Username">
+          <Label fx:id="user" layoutX="103.0" layoutY="153.0" prefHeight="27.0" prefWidth="113.0" text="Username">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

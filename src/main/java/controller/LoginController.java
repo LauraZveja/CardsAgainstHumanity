@@ -12,6 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.DatabaseUtils;
+import service.MainService;
 
 public class LoginController {
 
@@ -32,6 +33,10 @@ public class LoginController {
 		if (DatabaseUtils.isPlayerPasswordCorrect(playerUsername, playerPassword)) {
 			Alert alert_correct = new Alert(AlertType.INFORMATION, "Login succesful!");
 			alert_correct.showAndWait();
+
+			MainService.setCurrentPlayer(playerUsername);
+			System.out.println(
+					"LOGIN: Playerun:" + playerUsername + " current: " + MainService.getCurrentPlayer().getUserName());
 			try {
 				Scene scene_old = buttonLoginUser.getScene();
 				Stage stage_primary = (Stage) scene_old.getWindow();
@@ -46,6 +51,7 @@ public class LoginController {
 			Alert alert_wrong = new Alert(AlertType.WARNING, "Wrong username and/or password");
 			alert_wrong.showAndWait();
 		}
+
 	}
 
 	@FXML

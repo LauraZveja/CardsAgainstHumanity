@@ -21,6 +21,11 @@ import model.QuestionDeck;
 
 public class MainService extends Application {
 
+	static Player currentPlayer = new Player();
+	static int currentLobby;
+	static byte roundsInCurrentGame;
+	static Category currentGameCategory;
+
 	public static void main(String[] args) {
 
 		try {
@@ -32,7 +37,6 @@ public class MainService extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		launch(args);
 
 		// insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte!");
@@ -93,6 +97,50 @@ public class MainService extends Application {
 		 * readQuestionDeckFileByCategory(Category.ADULT);
 		 */
 
+	}
+
+	// --- CURRENT SESSION DETAILS --------
+
+	public static void setCurrentPlayer(String username) {
+		if (username != null) {
+			currentPlayer.setUserName(username);
+			if (DatabaseUtils.isPlayerAnAdult(username)) {
+				currentGameCategory = Category.ADULT;
+			} else {
+				currentGameCategory = Category.UNDER_18;
+			}
+		}
+
+	}
+
+	public static Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public static Category getCurrentCategory() {
+		return currentGameCategory;
+	}
+
+	public static int getCurrentLobby() {
+		return currentLobby;
+	}
+
+	public static void setCurrentGameCategory(Category category) {
+		if (category != null) {
+			currentGameCategory = category;
+		}
+	}
+
+	public static void setCurrentLobbyID(int id) {
+		currentLobby = id;
+	}
+
+	public static int getRoundsInCurrentGame() {
+		return roundsInCurrentGame;
+	}
+
+	public static void setRoundsInCurrentGame(byte rounds) {
+		roundsInCurrentGame = rounds;
 	}
 
 	// -------------------- ANSWERS --------------- //

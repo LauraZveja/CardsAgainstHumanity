@@ -15,6 +15,9 @@ public class GameScoreController {
 	private Button highscore;
 
 	@FXML
+	private Button logoutButton;
+
+	@FXML
 	public void clickHighscore() {
 		try {
 			Scene scene = FXMLLoader.load(getClass().getResource("/frame2_highscore.fxml"));
@@ -26,6 +29,11 @@ public class GameScoreController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@FXML
+	public void logout() {
+
 	}
 
 }
