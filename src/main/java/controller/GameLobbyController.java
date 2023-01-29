@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,11 +18,9 @@ import javafx.stage.Stage;
 import model.AnswerCard;
 import model.Category;
 import model.DatabaseUtils;
-import model.Deck;
 import model.GameLobby;
 import model.Player;
 import model.QuestionCard;
-import model.QuestionDeck;
 import service.MainService;
 
 public class GameLobbyController {
@@ -41,7 +38,7 @@ public class GameLobbyController {
 	private Button startGame;
 
 	@FXML
-	private ComboBox categoryComboBox;
+	private ComboBox<Category> categoryComboBox;
 
 	@FXML
 	private TextField roundCount;
@@ -53,7 +50,15 @@ public class GameLobbyController {
 		Player player = MainService.getCurrentPlayer();
 		user.setText(player.getUserName());
 		System.out.println("Player in initialize: " + player);
-		categoryComboBox.setItems(FXCollections.observableArrayList(Category.values()));
+
+		if (DatabaseUtils.isPlayerAnAdult(MainService.getCurrentPlayer().getUserName())) {
+			categoryComboBox.getItems().addAll(Category.values());
+		} else {
+			categoryComboBox.getItems().add(Category.UNDER_18);
+		}
+
+		categoryComboBox.getSelectionModel().selectFirst();
+
 	}
 
 	@FXML
@@ -91,13 +96,17 @@ public class GameLobbyController {
 		ArrayList<Player> players = new ArrayList<>();
 		players.add(MainService.getCurrentPlayer());
 
-		QuestionDeck questionsDeck = new QuestionDeck(MainService.getCurrentCategory());
-		ArrayList<QuestionCard> inputQuestions = questionsDeck.getQuestionCards();
+		/*
+		 * QuestionDeck questionsDeck = new
+		 * QuestionDeck(MainService.getCurrentCategory()); ArrayList<QuestionCard>
+		 * inputQuestions = questionsDeck.getQuestionCards();
+		 * 
+		 * Deck answersDeck = new Deck(MainService.getCurrentCategory());
+		 * ArrayList<AnswerCard> inputAnswerDeck = answersDeck.getAnswerCards();
+		 */
 
-		Deck answersDeck = new Deck(MainService.getCurrentCategory());
-		ArrayList<AnswerCard> inputAnswerDeck = answersDeck.getAnswerCards();
-
-		GameLobby gameLobby = new GameLobby(inputRoundCount, (byte) 4, players, inputQuestions, inputAnswerDeck);
+		GameLobby gameLobby = new GameLobby(inputRoundCount, (byte) 4, players, new ArrayList<QuestionCard>(),
+				new ArrayList<AnswerCard>());
 
 		try {
 			DatabaseUtils.saveGameLobbyToDB(gameLobby);
@@ -108,7 +117,7 @@ public class GameLobbyController {
 
 		MainService.setCurrentLobbyID(gameLobby.getGameLobby_ID());
 		MainService.setRoundsInCurrentGame(gameLobby.getRoundCount());
-		System.out.println("Current player: " + MainService.getCurrentPlayer().getUserName() + "Lobby: "
+		System.out.println("Current player: " + MainService.getCurrentPlayer().getUserName() + ", Lobby: "
 				+ MainService.getCurrentLobby() + ", rounds: " + MainService.getRoundsInCurrentGame() + ", category: "
 				+ MainService.getCurrentCategory());
 
@@ -128,19 +137,8 @@ public class GameLobbyController {
 	// TODO: SAKĀRTOT ALERTS
 	@FXML
 	public void checkCategory() {
-		System.out.println("CHECK category");
-		Category selected = (Category) categoryComboBox.getSelectionModel().getSelectedItem();
-
-		if (!DatabaseUtils.isPlayerAnAdult(MainService.getCurrentPlayer().getUserName())
-				&& selected.equals(Category.ADULT)) {
-			// if (MainService.getCurrentCategory().equals(Category.UNDER_18) &&
-			// selected.equals(Category.ADULT)) {
-			Alert alertWrong = new Alert(AlertType.WARNING, "You cannot select adult category if you are under 18! ");
-			alertWrong.showAndWait();
-		} else {
-			MainService.setCurrentGameCategory(selected);
-
-		}
+		Category selected = categoryComboBox.getSelectionModel().getSelectedItem();
+		MainService.setCurrentGameCategory(selected);
 
 	}
 
