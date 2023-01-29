@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -43,7 +41,12 @@ public class GameLobbyController {
 	@FXML
 	private TextField roundCount;
 
-	GameLobby gameLobby = new GameLobby();
+	private byte rounds;
+
+	@FXML
+	private Label errorMessage;
+
+	// GameLobby gameLobby = new GameLobby();
 
 	@FXML
 	private void initialize() {
@@ -59,6 +62,15 @@ public class GameLobbyController {
 
 		categoryComboBox.getSelectionModel().selectFirst();
 
+		roundCount.textProperty().addListener((observable, oldValue, newValue) -> {
+			checkRoundCount(newValue);
+		});
+
+		errorMessage.textProperty().addListener((observable, oldValue, newValue) -> {
+			startGame.setDisable(!newValue.isEmpty());
+		});
+
+		startGame.setDisable(true);
 	}
 
 	@FXML
@@ -91,50 +103,48 @@ public class GameLobbyController {
 
 	@FXML
 	public void clickStartGame() {
-		byte inputRoundCount = Byte.parseByte(roundCount.getText());
+		if (errorMessage.getText().isEmpty()) {
 
-		ArrayList<Player> players = new ArrayList<>();
-		players.add(MainService.getCurrentPlayer());
+			byte inputRoundCount = Byte.parseByte(roundCount.getText());
+			ArrayList<Player> players = new ArrayList<>();
+			players.add(MainService.getCurrentPlayer());
+			/*
+			 * QuestionDeck questionsDeck = new
+			 * QuestionDeck(MainService.getCurrentCategory()); ArrayList<QuestionCard>
+			 * inputQuestions = questionsDeck.getQuestionCards();
+			 * 
+			 * Deck answersDeck = new Deck(MainService.getCurrentCategory());
+			 * ArrayList<AnswerCard> inputAnswerDeck = answersDeck.getAnswerCards();
+			 */
+			GameLobby gameLobby = new GameLobby(inputRoundCount, (byte) 4, players, new ArrayList<QuestionCard>(),
+					new ArrayList<AnswerCard>());
 
-		/*
-		 * QuestionDeck questionsDeck = new
-		 * QuestionDeck(MainService.getCurrentCategory()); ArrayList<QuestionCard>
-		 * inputQuestions = questionsDeck.getQuestionCards();
-		 * 
-		 * Deck answersDeck = new Deck(MainService.getCurrentCategory());
-		 * ArrayList<AnswerCard> inputAnswerDeck = answersDeck.getAnswerCards();
-		 */
+			try {
+				DatabaseUtils.saveGameLobbyToDB(gameLobby);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-		GameLobby gameLobby = new GameLobby(inputRoundCount, (byte) 4, players, new ArrayList<QuestionCard>(),
-				new ArrayList<AnswerCard>());
+			MainService.setCurrentLobbyID(gameLobby.getGameLobby_ID());
+			MainService.setRoundsInCurrentGame(gameLobby.getRoundCount());
+			System.out.println("Current player: " + MainService.getCurrentPlayer().getUserName() + ", Lobby: "
+					+ MainService.getCurrentLobby() + ", rounds: " + MainService.getRoundsInCurrentGame()
+					+ ", category: " + MainService.getCurrentCategory());
 
-		try {
-			DatabaseUtils.saveGameLobbyToDB(gameLobby);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			try {
+				Scene scene = logout.getScene();
+				Stage primaryStage = (Stage) scene.getWindow();
+				Scene mainScene = FXMLLoader.load(getClass().getResource("/frame6_select_answer.fxml"));
+				primaryStage.setScene(mainScene);
+				primaryStage.show();
 
-		MainService.setCurrentLobbyID(gameLobby.getGameLobby_ID());
-		MainService.setRoundsInCurrentGame(gameLobby.getRoundCount());
-		System.out.println("Current player: " + MainService.getCurrentPlayer().getUserName() + ", Lobby: "
-				+ MainService.getCurrentLobby() + ", rounds: " + MainService.getRoundsInCurrentGame() + ", category: "
-				+ MainService.getCurrentCategory());
-
-		try {
-			Scene scene = logout.getScene();
-			Stage primaryStage = (Stage) scene.getWindow();
-			Scene mainScene = FXMLLoader.load(getClass().getResource("/frame6_select_answer.fxml"));
-			primaryStage.setScene(mainScene);
-			primaryStage.show();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	// TODO: SAKĀRTOT ALERTS
 	@FXML
 	public void checkCategory() {
 		Category selected = categoryComboBox.getSelectionModel().getSelectedItem();
@@ -142,20 +152,17 @@ public class GameLobbyController {
 
 	}
 
-	// TODO: uzlikt, lai nevar ievadīt String + sakārtot alerts
-	public void checkRoundCount() {
-		System.out.println("CHECK ROUND COUNT");
-		String enteredRoundCount = roundCount.getText();
-		System.out.println("CHECK enteredRoundCount" + enteredRoundCount);
-		byte count = Byte.parseByte(enteredRoundCount);
-		System.out.println("CHECK count" + count);
-		if (count < 0 || count > 127) {
-			startGame.setDisable(true);
-			Alert alert_wrong = new Alert(AlertType.WARNING, "Number of rounds per game must be 1-127");
-			alert_wrong.showAndWait();
-		} else {
+	public void checkRoundCount(String newValue) {
+		try {
+			rounds = Byte.parseByte(newValue);
+			if (rounds < 1 || rounds > 127) {
+				throw new NumberFormatException();
+			}
+			errorMessage.setText("");
 			startGame.setDisable(false);
-			gameLobby.setRoundCount(count);
+		} catch (NumberFormatException e) {
+			errorMessage.setText("Round count must be a number between 1 and 127.");
+			startGame.setDisable(true);
 		}
 
 	}
