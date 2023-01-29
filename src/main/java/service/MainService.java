@@ -102,15 +102,8 @@ public class MainService extends Application {
 	// --- CURRENT SESSION DETAILS --------
 
 	public static void setCurrentPlayer(String username) {
-		if (username != null) {
-			currentPlayer.setUserName(username);
-			if (DatabaseUtils.isPlayerAnAdult(username)) {
-				currentGameCategory = Category.ADULT;
-			} else {
-				currentGameCategory = Category.UNDER_18;
-			}
-		}
-
+		currentPlayer.setUserName(username);
+		currentGameCategory = Category.UNDER_18;
 	}
 
 	public static Player getCurrentPlayer() {
