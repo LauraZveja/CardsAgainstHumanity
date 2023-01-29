@@ -18,6 +18,7 @@ import model.DatabaseUtils;
 import model.Deck;
 import model.Player;
 import model.QuestionDeck;
+import model.Score;
 
 public class MainService extends Application {
 
@@ -25,11 +26,13 @@ public class MainService extends Application {
 	static int currentLobby;
 	static byte roundsInCurrentGame;
 	static Category currentGameCategory;
+	static ArrayList<Score> currentGameScores;
 
 	public static void main(String[] args) {
 		try {
 			DatabaseUtils.createDatabase();
 			currentPlayer = new Player();
+			currentGameScores = new ArrayList<>();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,6 +40,12 @@ public class MainService extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		/*
+		 * currentPlayer.setUserName("User1"); currentLobby = 100;
+		 * currentGameScores.add(new Score(1, "User1", 20)); currentGameScores.add(new
+		 * Score(2, "User2", 14)); currentGameScores.add(new Score(3, "User3", 13));
+		 * currentGameScores.add(new Score(4, "User4", 10));
+		 */
 		launch(args);
 
 		// insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte!");
@@ -108,6 +117,14 @@ public class MainService extends Application {
 
 	public static Player getCurrentPlayer() {
 		return currentPlayer;
+	}
+
+	public static ArrayList<Score> getCurrentGameScores() {
+		return currentGameScores;
+	}
+
+	public static void setCurrentGameScores(ArrayList<Score> scores) {
+		currentGameScores = scores;
 	}
 
 	public static Category getCurrentCategory() {
@@ -366,6 +383,8 @@ public class MainService extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		Scene scene = FXMLLoader.load(getClass().getResource("/frame1_main.fxml"));
+		// Scene scene =
+		// FXMLLoader.load(getClass().getResource("/frame9_game_results.fxml"));
 
 		// Stage objektam uzstādīt izveidoto scene
 		primaryStage.setScene(scene);

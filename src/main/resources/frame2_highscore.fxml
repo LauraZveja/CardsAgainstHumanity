@@ -21,7 +21,7 @@
             <Font name="Impact" size="48.0" />
          </font>
       </Text>
-      <TableView fx:id="tableView" layoutX="247.0" layoutY="201.0" prefHeight="99" prefWidth="508.0">
+      <TableView fx:id="tableView" layoutX="250" layoutY="201.0" prefHeight="99" prefWidth="510">
         <columns>
           <TableColumn fx:id="placeColumn" editable="false" prefWidth="111.0" sortType="DESCENDING" text="Place" />
           <TableColumn fx:id="usernameColumn" minWidth="0.0" prefWidth="221.0" text="Username" />

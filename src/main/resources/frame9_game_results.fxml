@@ -21,11 +21,11 @@
             <Font name="Impact" size="48.0" />
          </font>
       </Text>
-      <TableView layoutX="248.0" layoutY="201.0" prefHeight="223.0" prefWidth="505.0">
+      <TableView fx:id="tableView"  layoutX="250" layoutY="201.0" prefHeight="125" prefWidth="520">
         <columns>
-          <TableColumn editable="false" prefWidth="111.0" sortType="DESCENDING" text="Place" />
-          <TableColumn minWidth="0.0" prefWidth="221.0" text="Name" />
-            <TableColumn prefWidth="173.0" text="Points" />
+          <TableColumn fx:id="placeColumn" editable="false" prefWidth="111.0" sortType="DESCENDING" text="Place" />
+          <TableColumn fx:id="usernameColumn"  minWidth="0.0" prefWidth="221.0" text="Name" />
+            <TableColumn fx:id="pointsColumn" prefWidth="173.0" text="Points" />
         </columns>
       </TableView>
      <Button fx:id="logout" layoutX="836.0" layoutY="16.0" mnemonicParsing="false" onAction="#clickLogout" prefHeight="71.0" prefWidth="84.0" style="-fx-background-color: brown;" text="Logout" textAlignment="CENTER" wrapText="true">
