@@ -2,12 +2,14 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -58,7 +60,15 @@ public class VoteController {
 	@FXML
 	private Label GameID;
 
-	static Calendar computerDoB = new GregorianCalendar(1980, Calendar.DECEMBER, 31);
+	@FXML
+	private Label RoundID;
+
+	private int currentRoundID;
+
+	// GET ROUND ID-------------------------------------------------------
+	public void getRoundId() {
+		currentRoundID = SelectAnswerController.round.getRoundID();
+	}
 
 	// STATIC VARIABLE INITIALIZATION TO BE USED BY FRAME 8 AS WELL-------
 	public static Vote vote;
@@ -73,6 +83,8 @@ public class VoteController {
 	private AnswerCard computerAnswer1;
 	private AnswerCard computerAnswer2;
 	private AnswerCard computerAnswer3;
+	static Calendar computerDoB = new GregorianCalendar(1980, Calendar.DECEMBER, 31);
+	public ArrayList<Vote> allVotes = new ArrayList<>();
 
 	// RANDOM CLASS OBJECT INITIALIZATION TO BE USED FOR COMPUTER VOTES----
 	Random random = new Random();
@@ -138,10 +150,13 @@ public class VoteController {
 
 		if (chosenCard == 1) {
 			vote = new Vote(radioAnswer, computerPlayer1, player);
+			allVotes.add(vote);
 		} else if (chosenCard == 2) {
 			vote = new Vote(computerAnswer2, computerPlayer1, computerPlayer2);
+			allVotes.add(vote);
 		} else {
 			vote = new Vote(computerAnswer3, computerPlayer1, computerPlayer3);
+			allVotes.add(vote);
 		}
 
 	}
@@ -152,10 +167,13 @@ public class VoteController {
 
 		if (chosenCard == 1) {
 			vote = new Vote(radioAnswer, computerPlayer2, player);
+			allVotes.add(vote);
 		} else if (chosenCard == 2) {
 			vote = new Vote(computerAnswer2, computerPlayer2, computerPlayer1);
+			allVotes.add(vote);
 		} else {
 			vote = new Vote(computerAnswer3, computerPlayer2, computerPlayer3);
+			allVotes.add(vote);
 		}
 
 	}
@@ -166,10 +184,13 @@ public class VoteController {
 
 		if (chosenCard == 1) {
 			vote = new Vote(radioAnswer, computerPlayer3, player);
+			allVotes.add(vote);
 		} else if (chosenCard == 2) {
 			vote = new Vote(computerAnswer2, computerPlayer3, computerPlayer1);
+			allVotes.add(vote);
 		} else {
 			vote = new Vote(computerAnswer3, computerPlayer3, computerPlayer2);
+			allVotes.add(vote);
 		}
 
 	}
@@ -186,6 +207,8 @@ public class VoteController {
 	public void initialize() {
 		getGameID();
 		GameID.setText(String.valueOf(currentGameID));
+		getRoundId();
+		RoundID.setText(String.valueOf(currentRoundID));
 	}
 
 	@FXML
@@ -199,7 +222,7 @@ public class VoteController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		computerPlayer2 = new Player("Parole123!", "CynicalGenius", computerDoB);
 		try {
 			DatabaseUtils.savePlayerToDB(computerPlayer2);
@@ -207,7 +230,7 @@ public class VoteController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		computerPlayer3 = new Player("Parole123!", "DarkHumorEnthusiast", computerDoB);
 		try {
 			DatabaseUtils.savePlayerToDB(computerPlayer3);
@@ -215,21 +238,43 @@ public class VoteController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		// CREATE VOTE OBJECTS BASED ON CHOSEN VOTES--------------------------
 		if (radioAnswer1.isSelected()) {
 			vote = new Vote(computerAnswer1, player, computerPlayer1);
+			allVotes.add(vote);
 
 		} else if (radioAnswer2.isSelected()) {
 			vote = new Vote(computerAnswer2, player, computerPlayer2);
+			allVotes.add(vote);
 		} else {
 			vote = new Vote(computerAnswer3, player, computerPlayer3);
+			allVotes.add(vote);
 		}
-		
+
 		chosenByComputer1();
 		chosenByComputer2();
 		chosenByComputer3();
+		
+		// ADD ALL VOTES TO CURRENT ROUND OBJECT------------------------------
+		SelectAnswerController.round.setVotes(allVotes);
+		
+		// GO TO ROUND RESULTS FRAME------------------------------------------
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/frame8_round_results.fxml"));
+			Parent roundResults = loader.load();
+			Scene roundScene = new Scene(roundResults);
+			RoundResultController controller = loader.getController();
+			controller.initData(questionText, radioAnswer, computerAnswer1, computerAnswer2, computerAnswer3);
+
+			Stage stage_primary = (Stage) voteForBestAnswer.getScene().getWindow();
+			stage_primary.setScene(roundScene);
+			stage_primary.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
+
 
 }
