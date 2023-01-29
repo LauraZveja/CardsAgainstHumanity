@@ -15,11 +15,17 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.AnswerCard;
 import model.Category;
+import model.DatabaseUtils;
 import model.Deck;
 import model.QuestionCard;
 import model.QuestionDeck;
+import model.Round;
+import service.MainService;
 
 public class SelectAnswerController {
+
+	@FXML
+	private Label PlayerUsername;
 
 	@FXML
 	private Label answerText_1;
@@ -99,40 +105,75 @@ public class SelectAnswerController {
 	@FXML
 	private ImageView ComputerCard15;
 
-	Category category = Category.ADULT;
+	Category category = MainService.getCurrentCategory();
 
 	// CREATE DECK-----------------------------
 	Deck answerDeck = new Deck(category);
 
 	// CREATE QUESTION DECK----------------------
 	QuestionDeck questionDeck = new QuestionDeck(category);
-	
+
 	// STATIC VARIABLE INITIALIZATION TO BE USED BY VOTECONTROLLER
 	private static QuestionCard qc;
 	private static AnswerCard radioAnswer;
 	private static AnswerCard computerAnswer1;
 	private static AnswerCard computerAnswer2;
 	private static AnswerCard computerAnswer3;
-	
+
 	@FXML
-	  private Button buttonReturnToMainMenuFromLogin;
+	private Button buttonReturnToMainMenuFromSelectAnswer;
 
-	  @FXML
-	  public void returnToMainMenuFromSelectAnswer() {
-	    try {
-	      Scene scene_old = playTheAnswerButton.getScene();
-	      Stage stage_primary = (Stage) scene_old.getWindow();
-	      Scene scene_new = FXMLLoader.load(getClass().getResource("/frame5_lobby.fxml"));
-	      stage_primary.setScene(scene_new);
-	      stage_primary.show();
-	    } catch (IOException e) {
-	      e.printStackTrace();
-	    }
-	  }
+	// RETURN TO LOBBY-------------------------------
+	@FXML
+	public void returnToMainMenuFromSelectAnswer() {
+		try {
+			Scene scene_old = playTheAnswerButton.getScene();
+			Stage stage_primary = (Stage) scene_old.getWindow();
+			Scene scene_new = FXMLLoader.load(getClass().getResource("/frame5_lobby.fxml"));
+			stage_primary.setScene(scene_new);
+			stage_primary.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
+	@FXML
+	private Label GameID;
+
+	private int currentGameID;
+
+	// GET GAME ID--------------------------
+	public void getGameID() {
+		currentGameID = DatabaseUtils.getLastLobbyID();
+	}
+
+	@FXML
+	private Label RoundID;
+
+	private int currentRoundID;
+
+	public static Round round = new Round();
+
+	// GET ROUND ID--------------------------
+	public void getRoundId() {
+		currentRoundID = round.getRoundID();
+	}
+
+	@FXML
 	public void initialize() {
 
-		// COMPUTER CARD BACK
+		// SHOW CURRENT PLAYER'S USERNAME----------
+		PlayerUsername.setText(MainService.getCurrentPlayer().getUserName());
+
+		// SHOW GAME ID----------------------------
+		getGameID();
+		GameID.setText(String.valueOf(currentGameID));
+
+		// SHOW ROUND ID---------------------------
+		getRoundId();
+		RoundID.setText(String.valueOf(currentRoundID));
+
+		// COMPUTER CARD BACK----------------------
 		ComputerCard1.setImage(new Image("Card back.jpg"));
 		ComputerCard2.setImage(new Image("Card back.jpg"));
 		ComputerCard3.setImage(new Image("Card back.jpg"));
@@ -178,18 +219,18 @@ public class SelectAnswerController {
 
 		// GET QUESTION CARD-------------------------
 		qc = questionDeck.giveMeOneQuestion();
-		
 
 		// SHOW QUESTION CARD------------------------
 		questionText.setText(qc.getQuestion());
 	}
 
+	// PLAYER SELECT ANSWER CARD---------------------
 	@FXML
 	private Button playTheAnswerButton;
 
 	@FXML
 	public void clickPlayTheAnswerButton() {
-		
+
 		computerAnswer1 = answerDeck.giveMeOneCard();
 		computerAnswer2 = answerDeck.giveMeOneCard();
 		computerAnswer3 = answerDeck.giveMeOneCard();
@@ -199,13 +240,11 @@ public class SelectAnswerController {
 			answerText_1.setText(ac1.getAnswer());
 			radioAnswer = ac1;
 
-
 		} else {
 			if (radioAnswer_2.isSelected()) {
 				AnswerCard ac2 = answerDeck.giveMeOneCard();
 				answerText_2.setText(ac2.getAnswer());
 				radioAnswer = ac2;
-
 
 			} else {
 				if (radioAnswer_3.isSelected()) {
@@ -213,13 +252,11 @@ public class SelectAnswerController {
 					answerText_3.setText(ac3.getAnswer());
 					radioAnswer = ac3;
 
-
 				} else {
 					if (radioAnswer_4.isSelected()) {
 						AnswerCard ac4 = answerDeck.giveMeOneCard();
 						answerText_4.setText(ac4.getAnswer());
 						radioAnswer = ac4;
-
 
 					} else {
 						AnswerCard ac5 = answerDeck.giveMeOneCard();
@@ -230,19 +267,21 @@ public class SelectAnswerController {
 				}
 			}
 		}
+
+		// GO TO VOTE FRAME------------------------------------
 		try {
-	        FXMLLoader loader = new FXMLLoader(getClass().getResource("/frame7_vote.fxml"));
-	        Parent votePane = loader.load();
-	        Scene voteScene = new Scene(votePane);
-	        VoteController controller = loader.getController();
-	        controller.initData(qc, radioAnswer, computerAnswer1, computerAnswer2, computerAnswer3);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/frame7_vote.fxml"));
+			Parent votePane = loader.load();
+			Scene voteScene = new Scene(votePane);
+			VoteController controller = loader.getController();
+			controller.initData(qc, radioAnswer, computerAnswer1, computerAnswer2, computerAnswer3);
 
-	        Stage stage_primary = (Stage) playTheAnswerButton.getScene().getWindow();
-	        stage_primary.setScene(voteScene);
-	        stage_primary.show();
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+			Stage stage_primary = (Stage) playTheAnswerButton.getScene().getWindow();
+			stage_primary.setScene(voteScene);
+			stage_primary.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
-	}
+}

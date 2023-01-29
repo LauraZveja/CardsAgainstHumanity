@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Round {
 
 	// variables
-	private static byte idCounter = 0;
+	private static byte idCounter = 1;
 	private int roundID;
 	private int gameLobby_ID;
 	private QuestionCard questionCard;

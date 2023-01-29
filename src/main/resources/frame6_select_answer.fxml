@@ -28,7 +28,7 @@
                      <Font name="Impact" size="48.0" />
                   </font>
                </Text>
-               <Label layoutX="521.0" layoutY="50.0" text="GameID" textAlignment="CENTER">
+               <Label fx:id="GameID" layoutX="521.0" layoutY="50.0" text="GameID" textAlignment="CENTER">
                   <font>
                      <Font name="Impact" size="48.0" />
                   </font>
@@ -38,7 +38,7 @@
                      <Font name="Impact" size="48.0" />
                   </font>
                </Text>
-               <Label layoutX="878.0" layoutY="50.0" text="RoundID" textAlignment="CENTER">
+               <Label fx:id="RoundID" layoutX="878.0" layoutY="50.0" text="RoundID" textAlignment="CENTER">
                   <font>
                      <Font name="Impact" size="48.0" />
                   </font>
@@ -126,7 +126,7 @@
                            <Font name="System Bold" size="18.0" />
                         </font>
                      </Button>
-                     <Label layoutX="22.0" layoutY="14.0" prefHeight="27.0" prefWidth="366.0" text="Player">
+                     <Label fx:id="PlayerUsername" layoutX="22.0" layoutY="14.0" prefHeight="27.0" prefWidth="366.0" text="Player">
                         <font>
                            <Font name="System Bold" size="18.0" />
                         </font>
