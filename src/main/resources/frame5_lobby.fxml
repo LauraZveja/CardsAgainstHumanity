@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Text?>
 
 <Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameLobbyController">
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="934.0" style="-fx-background-color: light gray;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="934.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="-70.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CARDS AGAINST HUMANITY" textAlignment="CENTER" wrappingWidth="1072.13671875">
          <font>
@@ -36,7 +36,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="roundCount" minWidth="-Infinity" onAction="#checkRoundCount" prefHeight="25.0" prefWidth="167.0" />
+            <TextField fx:id="roundCount" minWidth="-Infinity" prefHeight="25.0" prefWidth="167.0" />
             <Text fill="#00000080" strokeType="OUTSIDE" strokeWidth="0.0" text="1 - 127" wrappingWidth="150.0">
                <VBox.margin>
                   <Insets bottom="20.0" />
@@ -60,6 +60,9 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
+      <Label fx:id="errorMessage" layoutX="242" layoutY="450.0" prefHeight="42.0" prefWidth="500.0" textFill="red" style=
+"-fx-font-size:18px;">
+          </Label>
       <Text layoutX="62.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello ">
          <font>
             <Font size="16.0" />
