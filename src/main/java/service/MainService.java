@@ -27,7 +27,6 @@ public class MainService extends Application {
 	static Category currentGameCategory;
 
 	public static void main(String[] args) {
-
 		try {
 			DatabaseUtils.createDatabase();
 			currentPlayer = new Player();
