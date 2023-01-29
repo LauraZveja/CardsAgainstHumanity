@@ -28,7 +28,7 @@
                      <Font name="Impact" size="48.0" />
                   </font>
                </Text>
-               <Label layoutX="521.0" layoutY="50.0" text="GameID" textAlignment="CENTER">
+               <Label fx:id="GameID" layoutX="521.0" layoutY="50.0" text="GameID" textAlignment="CENTER">
                   <font>
                      <Font name="Impact" size="48.0" />
                   </font>
@@ -106,15 +106,15 @@
                            <Font name="System Italic" size="24.0" />
                         </font>
                      </Label>
-                     <RadioButton layoutX="70.0" layoutY="275.0" mnemonicParsing="false" />
-                     <RadioButton layoutX="245.0" layoutY="275.0" mnemonicParsing="false" />
-                     <RadioButton layoutX="420.0" layoutY="275.0" mnemonicParsing="false" />
-                     <Button layoutX="141.0" layoutY="330.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="224.0" text="Vote for Best Answer!">
+                     <RadioButton fx:id="radioAnswer1" layoutX="70.0" layoutY="275.0" mnemonicParsing="false" />
+                     <RadioButton fx:id="radioAnswer2" layoutX="245.0" layoutY="275.0" mnemonicParsing="false" />
+                     <RadioButton fx:id="radioAnswer3" layoutX="420.0" layoutY="275.0" mnemonicParsing="false" />
+                     <Button fx:id="voteForBestAnswer" layoutX="141.0" layoutY="330.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="224.0" onAction="#vote" text="Vote for Best Answer!">
                         <font>
                            <Font name="System Bold" size="18.0" />
                         </font>
                      </Button>
-                     <Label layoutX="22.0" layoutY="14.0" prefHeight="27.0" prefWidth="366.0" text="Player">
+                     <Label fx:id="user" layoutX="22.0" layoutY="14.0" prefHeight="27.0" prefWidth="366.0" text="Username">
                         <font>
                            <Font name="System Bold" size="18.0" />
                         </font>
