@@ -115,7 +115,7 @@ public class SelectAnswerController {
 
 	// STATIC VARIABLE INITIALIZATION TO BE USED BY VOTECONTROLLER
 	private static QuestionCard qc;
-	private static AnswerCard radioAnswer;
+	public static AnswerCard radioAnswer;
 	private static AnswerCard computerAnswer1;
 	private static AnswerCard computerAnswer2;
 	private static AnswerCard computerAnswer3;

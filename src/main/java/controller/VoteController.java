@@ -255,10 +255,10 @@ public class VoteController {
 		chosenByComputer1();
 		chosenByComputer2();
 		chosenByComputer3();
-		
+
 		// ADD ALL VOTES TO CURRENT ROUND OBJECT------------------------------
 		SelectAnswerController.round.setVotes(allVotes);
-		
+
 		// GO TO ROUND RESULTS FRAME------------------------------------------
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/frame8_round_results.fxml"));
@@ -275,6 +275,5 @@ public class VoteController {
 		}
 
 	}
-
 
 }

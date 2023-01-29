@@ -146,6 +146,8 @@ public class RoundResultController {
 	@FXML
 	public void initialize() {
 
+		ResultsAnswerCardPlayer.setText(SelectAnswerController.radioAnswer.getAnswer());
+
 		// SHOW VOTES
 		byte VoteCount1 = 0;
 		byte VoteCount2 = 0;
@@ -237,10 +239,9 @@ public class RoundResultController {
 		ResultsAnswerCard1.setText(computerAnswer1.getAnswer());
 		ResultsAnswerCard2.setText(computerAnswer2.getAnswer());
 		ResultsAnswerCard3.setText(computerAnswer3.getAnswer());
-		ResultsAnswerCardPlayer.setText(radioAnswer.getAnswer());
 
 		// GET QUESTION CARD TEXT FROM FRAME 7-------------------------------
 		ResultsQuestionCard.setText(questionText.getText());
-
 	}
+
 }
