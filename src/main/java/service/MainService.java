@@ -21,7 +21,7 @@ import model.QuestionDeck;
 
 public class MainService extends Application {
 
-	static Player currentPlayer = new Player();
+	static Player currentPlayer;
 	static int currentLobby;
 	static byte roundsInCurrentGame;
 	static Category currentGameCategory;
@@ -30,6 +30,7 @@ public class MainService extends Application {
 
 		try {
 			DatabaseUtils.createDatabase();
+			currentPlayer = new Player();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
