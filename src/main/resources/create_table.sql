@@ -6,7 +6,8 @@ CREATE TABLE IF NOT EXISTS "Players" (
   "email" varchar(255),
   "registerdate" varchar(60),
   "gender" varchar(255),
-  "country" varchar(255)
+  "country" varchar(255),
+  "admin" INTEGER default 0 NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "GameLobby" (

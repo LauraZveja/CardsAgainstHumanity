@@ -232,7 +232,7 @@ public class DatabaseUtils {
 		}
 		return 0;
 	}
-
+	
 	public static ArrayList<Score> getTopScore() {
 		ArrayList<Score> top3 = new ArrayList<>();
 
@@ -258,6 +258,42 @@ public class DatabaseUtils {
 			e.printStackTrace();
 		}
 		return top3;
+	}
+	
+	public static boolean isPlayerAnAdmin(String username) {
+	    Connection conn = null;
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        conn = DatabaseUtils.getConnection();
+	        stmt = conn.prepareStatement("SELECT admin FROM Players WHERE username = ?");
+	        stmt.setString(1, username);
+	        rs = stmt.executeQuery();
+
+	        if (rs.next()) {
+	            return rs.getInt("admin") == 1;
+	        } else {
+	            return false;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    } finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            if (conn != null) {
+	                conn.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
 
 }

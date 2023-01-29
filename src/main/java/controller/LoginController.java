@@ -37,16 +37,27 @@ public class LoginController {
 			MainService.setCurrentPlayer(playerUsername);
 			System.out.println(
 					"LOGIN: Playerun:" + playerUsername + " current: " + MainService.getCurrentPlayer().getUserName());
-			try {
-				Scene scene_old = buttonLoginUser.getScene();
-				Stage stage_primary = (Stage) scene_old.getWindow();
-				Scene scene_new = FXMLLoader.load(getClass().getResource("/frame5_lobby.fxml"));
-				stage_primary.setScene(scene_new);
-				stage_primary.show();
-			} catch (IOException e) {
-				e.printStackTrace();
+			if(DatabaseUtils.isPlayerAnAdmin(playerUsername)) {
+				try {
+					Scene scene_old = buttonLoginUser.getScene();
+					Stage stage_primary = (Stage) scene_old.getWindow();
+					Scene scene_new = FXMLLoader.load(getClass().getResource("/frame10_acp_main.fxml"));
+					stage_primary.setScene(scene_new);
+					stage_primary.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					Scene scene_old = buttonLoginUser.getScene();
+					Stage stage_primary = (Stage) scene_old.getWindow();
+					Scene scene_new = FXMLLoader.load(getClass().getResource("/frame5_lobby.fxml"));
+					stage_primary.setScene(scene_new);
+					stage_primary.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-
 		} else {
 			Alert alert_wrong = new Alert(AlertType.WARNING, "Wrong username and/or password");
 			alert_wrong.showAndWait();

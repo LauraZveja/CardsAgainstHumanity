@@ -155,65 +155,12 @@ public class MainService extends Application {
 
 	// -------------------- ANSWERS --------------- //
 
-	public static void insertAnswer(Category category, String newAnswer) {
-		try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/" + category + ".txt"))) {
-			String line;
-			boolean alreadyExist = false;
-			while ((line = br.readLine()) != null) {
-				if (line.replaceAll("[\\.,'!]", "").equalsIgnoreCase(newAnswer.replaceAll("[\\.,'!]", ""))) {
-					alreadyExist = true;
-					break;
-				}
-			}
-			if (!alreadyExist) {
-				try (BufferedWriter bw = new BufferedWriter(
-						new FileWriter("src/main/resources/" + category + ".txt", true))) {
-					bw.write(newAnswer);
-					bw.newLine();
-				}
-			} else {
-				System.out.println("Answer already exists in the file");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	/*
 	 * updateAdult_answers - pievieno failam sarakstu ar jaunām atbildēm, pārbauda,
 	 * vai atbilde jau nav iekš faila
 	 */
 
-	public static void updateAdult_answers(Category category, ArrayList<String> new_adult_answers) {
-		if (new_adult_answers != null) {
-			for (String new_answer : new_adult_answers) {
-				try (BufferedReader br = new BufferedReader(
-						new FileReader("src/main/resources/" + category + ".txt"))) {
-					String line;
-					boolean alreadyExist = false;
-					while ((line = br.readLine()) != null) {
-						if (line.replaceAll("[\\.,']", "").equalsIgnoreCase(new_answer.replaceAll("[\\.,']", ""))) {
-							alreadyExist = true;
-							break;
-						}
-					}
-					if (!alreadyExist) {
-						try (BufferedWriter bw = new BufferedWriter(
-								new FileWriter("src/main/resources/" + category + ".txt", true))) {
-							if ((line = br.readLine()) == null) {
-								bw.newLine();
-							}
-							bw.write(new_answer);
-						}
-					} else {
-						System.out.println("Answer already exists in the file");
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+	
 
 	public static void dealHand(Player player, Deck deck) {
 		if (player != null && deck != null) {
@@ -226,19 +173,6 @@ public class MainService extends Application {
 	}
 
 	// READ FILE
-	public static void readAnswerDeckFileByCategory(Category category) {
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/" + category + ".txt"));
-			String line;
-			while ((line = reader.readLine()) != null) {
-
-				System.out.println(line);
-			}
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	// READ DECK
 	public static void readAnswerDeck(Deck deck) {
@@ -251,25 +185,6 @@ public class MainService extends Application {
 	}
 
 	// DELTE ANSWER
-
-	public static void deleteAnswerFromAnswerDeckByCategory(Category category, String unwanted_Answer) {
-		File file = new File("src/main/resources/" + category + ".txt");
-		StringBuilder temp_answers = new StringBuilder();
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			String line;
-			while ((line = br.readLine()) != null) {
-				if (!line.replaceAll("[\\.,'!]", "").equalsIgnoreCase(unwanted_Answer.replaceAll("[\\.,'!]", ""))) {
-					temp_answers.append(line + "\n");
-				}
-			}
-			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-			bw.write(temp_answers.toString());
-			bw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	// -------------------- QUESTIONS --------------- //
 
@@ -284,100 +199,13 @@ public class MainService extends Application {
 	}
 
 	// READ FILE
-	public static void readQuestionDeckFileByCategory(Category category) {
-		try {
-			BufferedReader reader = new BufferedReader(
-					new FileReader("src/main/resources/QUESTIONS_" + category + ".txt"));
-			String line;
-			while ((line = reader.readLine()) != null) {
-
-				System.out.println(line);
-			}
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	// CREATE QUESTION
 
-	public static void insertQuestion(Category category, String newQuestion) {
-		try (BufferedReader br = new BufferedReader(
-				new FileReader("src/main/resources/QUESTIONS_" + category + ".txt"))) {
-			String line;
-			boolean alreadyExist = false;
-			while ((line = br.readLine()) != null) {
-				if (line.replaceAll("[\\.,'!]", "").equalsIgnoreCase(newQuestion.replaceAll("[\\.,'!]", ""))) {
-					alreadyExist = true;
-					break;
-				}
-			}
-			if (!alreadyExist) {
-				try (BufferedWriter bw = new BufferedWriter(
-						new FileWriter("src/main/resources/QUESTIONS_" + category + ".txt", true))) {
-					bw.write(newQuestion);
-					bw.newLine();
-				}
-			} else {
-				System.out.println("Question already exists in the file");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	// UPDATE QUESTION
-	public static void updateQuestions(Category category, ArrayList<String> newQuestions) {
-		if (newQuestions != null) {
-			for (String new_question : newQuestions) {
-				try (BufferedReader br = new BufferedReader(
-						new FileReader("src/main/resources/QUESTIONS_" + category + ".txt"))) {
-					String line;
-					boolean alreadyExist = false;
-					while ((line = br.readLine()) != null) {
-						if (line.replaceAll("[\\.,']", "").equalsIgnoreCase(new_question.replaceAll("[\\.,']", ""))) {
-							alreadyExist = true;
-							break;
-						}
-					}
-					if (!alreadyExist) {
-						try (BufferedWriter bw = new BufferedWriter(
-								new FileWriter("src/main/resources/QUESTIONS_" + category + ".txt", true))) {
-							if ((line = br.readLine()) == null) {
-								bw.newLine();
-							}
-							bw.write(new_question);
-						}
-					} else {
-						System.err.println("Question already exists in the file");
-					}
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
 
 	// DELETE QUESTION
 
-	public static void deleteQuestionFromQuestionDeckByCategory(Category category, String unwanted_Question) {
-		File file = new File("src/main/resources/QUESTIONS_" + category + ".txt");
-		StringBuilder temp_questions = new StringBuilder();
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			String line;
-			while ((line = br.readLine()) != null) {
-				if (!line.replaceAll("[\\.,'!]", "").equalsIgnoreCase(unwanted_Question.replaceAll("[\\.,'!]", ""))) {
-					temp_questions.append(line + "\n");
-				}
-			}
-			BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-			bw.write(temp_questions.toString());
-			bw.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
