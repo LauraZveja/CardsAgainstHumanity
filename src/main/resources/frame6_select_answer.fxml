@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 
 <Scene xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectAnswerController">
-		<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1434.0" style="-fx-background-color: light gray;">
+		<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="725.0" prefWidth="1434.0" style="-fx-background-color: lightgray;">
             <children>
                <Button fx:id="buttonReturnToMainMenuFromLogin" layoutX="1328.0" layoutY="23.0" mnemonicParsing="false" onAction="#returnToMainMenuFromSelectAnswer" prefHeight="71.0" prefWidth="84.0" style="-fx-background-color: brown;" text="Return to Game Lobby" textAlignment="CENTER" wrapText="true">
                   <font>
