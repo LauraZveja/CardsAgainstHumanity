@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.DatabaseUtils;
 import model.Score;
 import service.MainService;
 
@@ -56,12 +57,12 @@ public class GameScoreController {
 	}
 
 	public ObservableList<Score> getScores() {
-		ObservableList<Score> players = FXCollections.observableArrayList();
+		ObservableList<Score> topPlayers = FXCollections.observableArrayList();
 
-		for (Score temp : MainService.getCurrentGameScores()) {
-			players.add(temp);
+		for (Score temp : DatabaseUtils.getTopScore()) {
+			topPlayers.add(temp);
 		}
-		return players;
+		return topPlayers;
 	}
 
 	@FXML

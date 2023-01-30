@@ -1,13 +1,7 @@
 package service;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +12,6 @@ import model.DatabaseUtils;
 import model.Deck;
 import model.Player;
 import model.QuestionDeck;
-import model.Score;
 
 public class MainService extends Application {
 
@@ -26,13 +19,11 @@ public class MainService extends Application {
 	static int currentLobby;
 	static byte roundsInCurrentGame;
 	static Category currentGameCategory;
-	static ArrayList<Score> currentGameScores;
 
 	public static void main(String[] args) {
 		try {
 			DatabaseUtils.createDatabase();
 			currentPlayer = new Player();
-			currentGameScores = new ArrayList<>();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -119,14 +110,6 @@ public class MainService extends Application {
 		return currentPlayer;
 	}
 
-	public static ArrayList<Score> getCurrentGameScores() {
-		return currentGameScores;
-	}
-
-	public static void setCurrentGameScores(ArrayList<Score> scores) {
-		currentGameScores = scores;
-	}
-
 	public static Category getCurrentCategory() {
 		return currentGameCategory;
 	}
@@ -159,8 +142,6 @@ public class MainService extends Application {
 	 * updateAdult_answers - pievieno failam sarakstu ar jaunām atbildēm, pārbauda,
 	 * vai atbilde jau nav iekš faila
 	 */
-
-	
 
 	public static void dealHand(Player player, Deck deck) {
 		if (player != null && deck != null) {
@@ -205,7 +186,6 @@ public class MainService extends Application {
 	// UPDATE QUESTION
 
 	// DELETE QUESTION
-
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {

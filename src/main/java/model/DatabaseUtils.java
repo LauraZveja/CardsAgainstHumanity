@@ -232,7 +232,7 @@ public class DatabaseUtils {
 		}
 		return 0;
 	}
-	
+
 	public static ArrayList<Score> getTopScore() {
 		ArrayList<Score> top3 = new ArrayList<>();
 
@@ -259,41 +259,68 @@ public class DatabaseUtils {
 		}
 		return top3;
 	}
-	
+
+	public static ArrayList<Score> getGameScore(int gamenumber) {
+		ArrayList<Score> scores = new ArrayList<>();
+		try (Connection connection = getConnection()) {
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT playerid, COUNT(playerid) as votes FROM GameHistory WHERE gamelobbyid = ? GROUP BY playerid ORDER BY votes DESC");
+			statement.setInt(1, gamenumber);
+			ResultSet resultSet = statement.executeQuery();
+			int place = 1;
+			while (resultSet.next()) {
+				int playerid = resultSet.getInt("playerid");
+				int votes = resultSet.getInt("votes"); // votes
+				PreparedStatement ps = connection.prepareStatement("SELECT username FROM players WHERE id=?");
+				ps.setInt(1, playerid);
+				ResultSet rs = ps.executeQuery();
+
+				if (rs.next()) {
+					String username = rs.getString("username");
+					scores.add(new Score(place, username, votes));
+					place++;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return scores;
+	}
+
 	public static boolean isPlayerAnAdmin(String username) {
-	    Connection conn = null;
-	    PreparedStatement stmt = null;
-	    ResultSet rs = null;
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 
-	    try {
-	        conn = DatabaseUtils.getConnection();
-	        stmt = conn.prepareStatement("SELECT admin FROM Players WHERE username = ?");
-	        stmt.setString(1, username);
-	        rs = stmt.executeQuery();
+		try {
+			conn = DatabaseUtils.getConnection();
+			stmt = conn.prepareStatement("SELECT admin FROM Players WHERE username = ?");
+			stmt.setString(1, username);
+			rs = stmt.executeQuery();
 
-	        if (rs.next()) {
-	            return rs.getInt("admin") == 1;
-	        } else {
-	            return false;
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        return false;
-	    } finally {
-	        try {
-	            if (rs != null) {
-	                rs.close();
-	            }
-	            if (stmt != null) {
-	                stmt.close();
-	            }
-	            if (conn != null) {
-	                conn.close();
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
+			if (rs.next()) {
+				return rs.getInt("admin") == 1;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
