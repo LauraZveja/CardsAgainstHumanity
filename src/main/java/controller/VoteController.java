@@ -187,6 +187,7 @@ public class VoteController {
 		ToggleGroup group = new ToggleGroup();
 
 		radioAnswer1.setToggleGroup(group);
+		radioAnswer1.setSelected(true);
 		radioAnswer2.setToggleGroup(group);
 		radioAnswer3.setToggleGroup(group);
 
