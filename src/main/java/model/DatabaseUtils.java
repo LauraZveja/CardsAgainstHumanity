@@ -23,7 +23,6 @@ public class DatabaseUtils {
 	public static void createDatabase() throws SQLException, IOException {
 		File dbFile = new File("cah.db");
 		if (dbFile.exists()) {
-			System.out.println("Datubaze jau eksiste");
 			return;
 		}
 		try (Connection conn = DriverManager.getConnection(URL)) {
@@ -34,7 +33,6 @@ public class DatabaseUtils {
 				Statement stmt = conn.createStatement();
 				stmt.executeUpdate(statement);
 			}
-			System.out.println("Datubaze izveidota veiksmigi");
 		}
 	}
 
@@ -57,7 +55,6 @@ public class DatabaseUtils {
 			preparedStatement.setString(7, player.getGender().toString());
 			preparedStatement.setString(8, player.getCountry().toString());
 			preparedStatement.executeUpdate();
-			System.out.println("Player saglabats veiksmigi");
 		}
 	}
 
@@ -74,7 +71,6 @@ public class DatabaseUtils {
 			preparedStatement.setString(2, formattedDAT);
 			preparedStatement.setInt(3, gameLobby.getRoundCount());
 			preparedStatement.executeUpdate();
-			System.out.println("GameLobby saglabats veiksmigi");
 		}
 	}
 
@@ -93,7 +89,6 @@ public class DatabaseUtils {
 				preparedStatement.setInt(3, round.getRoundID());
 				preparedStatement.setInt(4, 1);
 				preparedStatement.executeUpdate();
-				System.out.println("Vote saglabats veiksmigi");
 			}
 		}
 	}
@@ -105,7 +100,8 @@ public class DatabaseUtils {
 
 	public static int getPlayerIdByUsername(String username) {
 		try (Connection connection = getConnection()) {
-			PreparedStatement statement = connection.prepareStatement("SELECT id FROM players WHERE username = ?");
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT id FROM players WHERE username = ?");
 			statement.setString(1, username);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
@@ -122,8 +118,8 @@ public class DatabaseUtils {
 	public static int getTotalScoreByUsername(String username) {
 		try (Connection connection = getConnection()) {
 			int playerId = getPlayerIdByUsername(username);
-			PreparedStatement statement = connection
-					.prepareStatement("SELECT SUM(score) as total_score FROM gamehistory WHERE playerid = ?");
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT SUM(score) as total_score FROM gamehistory WHERE playerid = ?");
 			statement.setInt(1, playerId);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
@@ -156,7 +152,8 @@ public class DatabaseUtils {
 
 	public static boolean isPlayerAnAdult(String username) {
 		try (Connection connection = getConnection()) {
-			PreparedStatement statement = connection.prepareStatement("SELECT dob FROM players WHERE username = ?");
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT dob FROM players WHERE username = ?");
 			statement.setString(1, username);
 			ResultSet resultSet = statement.executeQuery();
 			if (resultSet.next()) {
@@ -175,7 +172,8 @@ public class DatabaseUtils {
 
 	public static boolean isUsernameTaken(String username) {
 		try (Connection connection = getConnection()) {
-			PreparedStatement statement = connection.prepareStatement("SELECT * FROM players WHERE username = ?");
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT * FROM players WHERE username = ?");
 			statement.setString(1, username);
 			ResultSet resultSet = statement.executeQuery();
 			return resultSet.next() ? true : false;
@@ -187,8 +185,8 @@ public class DatabaseUtils {
 
 	public static boolean isPlayerPasswordCorrect(String username, String password) {
 		try (Connection connection = getConnection()) {
-			PreparedStatement statement = connection
-					.prepareStatement("SELECT * FROM players WHERE username = ? AND password = ?");
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT * FROM players WHERE username = ? AND password = ?");
 			statement.setString(1, username);
 			statement.setString(2, password);
 			ResultSet resultSet = statement.executeQuery();
@@ -201,7 +199,8 @@ public class DatabaseUtils {
 
 	public static boolean isEmailTaken(String email) {
 		try (Connection connection = getConnection()) {
-			PreparedStatement statement = connection.prepareStatement("SELECT * FROM players WHERE email = ?");
+			PreparedStatement statement = connection.prepareStatement(
+					"SELECT * FROM players WHERE email = ?");
 			statement.setString(1, email);
 			ResultSet resultSet = statement.executeQuery();
 			return resultSet.next() ? true : false;
@@ -214,7 +213,8 @@ public class DatabaseUtils {
 	public static int getLastPlayerID() {
 		try (Connection connection = getConnection()) {
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT id FROM players ORDER BY id DESC LIMIT 1");
+			ResultSet resultSet = statement.executeQuery(
+					"SELECT id FROM players ORDER BY id DESC LIMIT 1");
 			if (resultSet.next()) {
 				return resultSet.getInt("id");
 			}
@@ -227,7 +227,8 @@ public class DatabaseUtils {
 	public static int getLastLobbyID() {
 		try (Connection connection = getConnection()) {
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT id FROM GameLobby ORDER BY id DESC LIMIT 1");
+			ResultSet resultSet = statement.executeQuery(
+					"SELECT id FROM GameLobby ORDER BY id DESC LIMIT 1");
 			if (resultSet.next()) {
 				return resultSet.getInt("id");
 			}
@@ -248,7 +249,8 @@ public class DatabaseUtils {
 			while (resultSet.next()) {
 				int playerid = resultSet.getInt("playerid");
 				int votes = resultSet.getInt("votes"); // votes
-				PreparedStatement ps = connection.prepareStatement("SELECT username FROM players WHERE id=?");
+				PreparedStatement ps = connection.prepareStatement(
+						"SELECT username FROM players WHERE id=?");
 				ps.setInt(1, playerid);
 				ResultSet rs = ps.executeQuery();
 
@@ -276,7 +278,8 @@ public class DatabaseUtils {
 			while (resultSet.next()) {
 				int playerid = resultSet.getInt("playerid");
 				int votes = resultSet.getInt("votes"); // votes
-				PreparedStatement ps = connection.prepareStatement("SELECT username FROM players WHERE id=?");
+				PreparedStatement ps = connection.prepareStatement(
+						"SELECT username FROM players WHERE id=?");
 				ps.setInt(1, playerid);
 				ResultSet rs = ps.executeQuery();
 
@@ -293,16 +296,11 @@ public class DatabaseUtils {
 	}
 
 	public static boolean isPlayerAnAdmin(String username) {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-
-		try {
-			conn = DatabaseUtils.getConnection();
-			stmt = conn.prepareStatement("SELECT admin FROM Players WHERE username = ?");
-			stmt.setString(1, username);
-			rs = stmt.executeQuery();
-
+		try (Connection connection = DatabaseUtils.getConnection()) {
+			PreparedStatement ps = connection.prepareStatement(
+					"SELECT admin FROM Players WHERE username = ?");
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				return rs.getInt("admin") == 1;
 			} else {
@@ -311,20 +309,6 @@ public class DatabaseUtils {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (stmt != null) {
-					stmt.close();
-				}
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
