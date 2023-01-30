@@ -84,10 +84,12 @@ public class DatabaseUtils {
 		}
 		try (Connection conn = getConnection()) {
 			for (Vote vote : round.getVotes()) {
+				String username = vote.playerVotedAbout().getUserName();
+				int playerid = getPlayerIdByUsername(username);
 				String query = "INSERT INTO GameHistory (gamelobbyid, playerid, roundid, score) VALUES (?, ?, ?, ?)";
 				PreparedStatement preparedStatement = conn.prepareStatement(query);
 				preparedStatement.setInt(1, round.getGameLobby_ID());
-				preparedStatement.setInt(2, vote.playerVotedAbout().getPlayerID());
+				preparedStatement.setInt(2, playerid);
 				preparedStatement.setInt(3, round.getRoundID());
 				preparedStatement.setInt(4, 1);
 				preparedStatement.executeUpdate();
