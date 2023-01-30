@@ -202,7 +202,7 @@ public class RoundResultController {
 
 	@FXML
 	public void clickContinueToNextRoundFromResults() {
-		if (MainService.getRoundsInCurrentGame() > SelectAnswerController.round.getRoundID()) {
+		if (MainService.getRoundsInCurrentGame() > SelectAnswerController.getRoundID()) {
 			SelectAnswerController.round = new Round();
 
 			try {
