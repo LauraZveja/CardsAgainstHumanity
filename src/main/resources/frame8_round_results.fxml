@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
@@ -43,7 +42,7 @@
                      <Font name="Impact" size="48.0" />
                   </font>
                </Label>
-               <Pane layoutX="870.0" layoutY="190.0" prefHeight="700.0" prefWidth="550.0">
+               <Pane layoutX="856.0" layoutY="110.0" prefHeight="639.0" prefWidth="550.0">
                   <children>
                      <Pane prefHeight="200.0" prefWidth="550.0">
                         <children>
@@ -59,7 +58,7 @@
                            <ImageView fx:id="ResultsComputerCard5" fitHeight="150.0" fitWidth="100.0" layoutX="440.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
                         </children>
                      </Pane>
-                     <Pane layoutY="258.0" prefHeight="200.0" prefWidth="550.0">
+                     <Pane layoutY="200.0" prefHeight="200.0" prefWidth="550.0">
                         <children>
                            <Label fx:id="ResultsUsername3_2" text="Computer Player 2">
                               <font>
@@ -73,7 +72,7 @@
                            <ImageView fx:id="ResultsComputerCard10" fitHeight="150.0" fitWidth="100.0" layoutX="440.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
                         </children>
                      </Pane>
-                     <Pane layoutX="6.0" layoutY="509.0" prefHeight="200.0" prefWidth="550.0">
+                     <Pane layoutY="400.0" prefHeight="200.0" prefWidth="550.0">
                         <children>
                            <Label fx:id="ResultsUsername3_3" text="Computer Player 3">
                               <font>
@@ -89,24 +88,24 @@
                      </Pane>
                   </children>
                </Pane>
-               <Pane layoutX="27.0" layoutY="197.0" prefHeight="719.0" prefWidth="494.0">
+               <Pane layoutX="26.0" layoutY="110.0" prefHeight="639.0" prefWidth="494.0">
                   <children>
                      <Label fx:id="ResultsAnswerCard1" alignment="CENTER" layoutY="50.0" lineSpacing="2.0" prefHeight="210.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: black;" text="Answer" textAlignment="CENTER" wrapText="true">
                         <font>
-                           <Font name="System Italic" size="24.0" />
+                           <Font name="System Italic" size="14.0" />
                         </font>
                      </Label>
                      <Label fx:id="ResultsAnswerCard2" alignment="CENTER" layoutX="175.0" layoutY="50.0" lineSpacing="2.0" prefHeight="210.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: black;" text="Answer" textAlignment="CENTER" wrapText="true">
                         <font>
-                           <Font name="System Italic" size="24.0" />
+                           <Font name="System Italic" size="14.0" />
                         </font>
                      </Label>
                      <Label fx:id="ResultsAnswerCard3" alignment="CENTER" layoutX="350.0" layoutY="50.0" lineSpacing="2.0" prefHeight="210.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: black;" text="Answer" textAlignment="CENTER" wrapText="true">
                         <font>
-                           <Font name="System Italic" size="24.0" />
+                           <Font name="System Italic" size="14.0" />
                         </font>
                      </Label>
-                     <Button fx:id="ContinueToNextRoundFromResults" layoutX="141.0" layoutY="609.0" mnemonicParsing="false" onAction="#clickContinueToNextRoundFromResults" prefHeight="42.0" prefWidth="249.0" text="Continue to Next Round">
+                     <Button fx:id="ContinueToNextRoundFromResults" layoutX="116.0" layoutY="583.0" mnemonicParsing="false" onAction="#clickContinueToNextRoundFromResults" prefHeight="42.0" prefWidth="249.0" text="Continue">
                         <font>
                            <Font name="System Bold" size="18.0" />
                         </font>
@@ -158,7 +157,7 @@
                      </Label>
                      <Label fx:id="ResultsAnswerCardPlayer" alignment="CENTER" layoutX="157.0" layoutY="303.0" lineSpacing="2.0" prefHeight="270.0" prefWidth="180.0" style="-fx-background-color: white; -fx-border-color: black;" text="Answer" textAlignment="CENTER" wrapText="true">
                         <font>
-                           <Font name="System Bold Italic" size="24.0" />
+                           <Font name="System Bold Italic" size="14.0" />
                         </font>
                      </Label>
                      <Label fx:id="ResultsUsernamePlayer" layoutX="15.0" layoutY="418.0" prefHeight="27.0" prefWidth="130.0" text="Player">

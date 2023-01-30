@@ -18,6 +18,8 @@ import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.AnswerCard;
 import model.DatabaseUtils;
 import model.GameLobby;
@@ -52,6 +54,51 @@ public class VoteController {
 
 	@FXML
 	private Label ComputerAnswer3;
+
+	@FXML
+	private ImageView VoteComputerCard1;
+
+	@FXML
+	private ImageView VoteComputerCard2;
+
+	@FXML
+	private ImageView VoteComputerCard3;
+
+	@FXML
+	private ImageView VoteComputerCard4;
+
+	@FXML
+	private ImageView VoteComputerCard5;
+
+	@FXML
+	private ImageView VoteComputerCard6;
+
+	@FXML
+	private ImageView VoteComputerCard7;
+
+	@FXML
+	private ImageView VoteComputerCard8;
+
+	@FXML
+	private ImageView VoteComputerCard9;
+
+	@FXML
+	private ImageView VoteComputerCard10;
+
+	@FXML
+	private ImageView VoteComputerCard11;
+
+	@FXML
+	private ImageView VoteComputerCard12;
+
+	@FXML
+	private ImageView VoteComputerCard13;
+
+	@FXML
+	private ImageView VoteComputerCard14;
+
+	@FXML
+	private ImageView VoteComputerCard15;
 
 	@FXML
 	private Label user;
@@ -207,6 +254,24 @@ public class VoteController {
 	@FXML
 	// SET CURRENT GAME AND ROUND ID'S IN THE UI------------------------------
 	public void initialize() {
+
+		// COMPUTER CARD BACK----------------------
+		VoteComputerCard1.setImage(new Image("Card back.jpg"));
+		VoteComputerCard2.setImage(new Image("Card back.jpg"));
+		VoteComputerCard3.setImage(new Image("Card back.jpg"));
+		VoteComputerCard4.setImage(new Image("Card back.jpg"));
+		VoteComputerCard5.setImage(new Image("Card back.jpg"));
+		VoteComputerCard6.setImage(new Image("Card back.jpg"));
+		VoteComputerCard7.setImage(new Image("Card back.jpg"));
+		VoteComputerCard8.setImage(new Image("Card back.jpg"));
+		VoteComputerCard9.setImage(new Image("Card back.jpg"));
+		VoteComputerCard10.setImage(new Image("Card back.jpg"));
+		VoteComputerCard11.setImage(new Image("Card back.jpg"));
+		VoteComputerCard12.setImage(new Image("Card back.jpg"));
+		VoteComputerCard13.setImage(new Image("Card back.jpg"));
+		VoteComputerCard14.setImage(new Image("Card back.jpg"));
+		VoteComputerCard15.setImage(new Image("Card back.jpg"));
+
 		getGameID();
 		GameID.setText(String.valueOf(currentGameID));
 		getRoundId();

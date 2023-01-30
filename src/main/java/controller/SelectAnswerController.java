@@ -167,7 +167,7 @@ public class SelectAnswerController {
 
 	@FXML
 	public void initialize() {
-
+		
 		// SHOW CURRENT PLAYER'S USERNAME----------
 		PlayerUsername.setText(MainService.getCurrentPlayer().getUserName());
 

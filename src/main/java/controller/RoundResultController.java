@@ -119,8 +119,6 @@ public class RoundResultController {
 
 	private int currentResultsRoundID;
 
-	public static Round round = new Round();
-
 	// GET ROUND ID--------------------------
 	public void getReslutsRoundId() {
 		currentResultsRoundID = SelectAnswerController.round.getRoundID();
@@ -145,8 +143,6 @@ public class RoundResultController {
 
 	@FXML
 	public void initialize() {
-
-		ResultsAnswerCardPlayer.setText(SelectAnswerController.radioAnswer.getAnswer());
 
 		// SHOW VOTES
 		byte VoteCount1 = 0;
@@ -206,6 +202,8 @@ public class RoundResultController {
 	@FXML
 	public void clickContinueToNextRoundFromResults() {
 
+		SelectAnswerController.round = new Round();
+		
 		try {
 			Scene scene_old = ReturnToLobbyFromResults.getScene();
 			Stage stage_primary = (Stage) scene_old.getWindow();
