@@ -59,7 +59,7 @@ public class GameScoreController {
 	public ObservableList<Score> getScores() {
 		ObservableList<Score> topPlayers = FXCollections.observableArrayList();
 
-		for (Score temp : DatabaseUtils.getTopScore()) {
+		for (Score temp : DatabaseUtils.getGameScore()) {
 			topPlayers.add(temp);
 		}
 		return topPlayers;
