@@ -25,7 +25,7 @@ public class Deck {
 	public void shuffle() {
 		Random rand = new Random();
 
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 10000; i++) {
 			int place = rand.nextInt(answerCards.size());
 			AnswerCard temp = answerCards.get(place);
 			answerCards.remove(place);
