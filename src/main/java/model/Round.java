@@ -20,7 +20,7 @@ public class Round {
 	}
 
 	public int getGameLobby_ID() {
-		return roundID;
+		return gameLobby_ID;
 	}
 
 	public QuestionCard getQuestionCard() {
