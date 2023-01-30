@@ -47,7 +47,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="categoryComboBox" onAction="#checkCategory" prefWidth="150.0" />
+            <ComboBox fx:id="categoryComboBox" prefWidth="150.0" />
          </children>
       </VBox>
       <Button fx:id="highscore" layoutX="522.0" layoutY="500.0" mnemonicParsing="false" onAction="#clickHighscore" prefHeight="42.0" prefWidth="224.0" text="View Highscore Board">

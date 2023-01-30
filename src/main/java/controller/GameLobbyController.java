@@ -46,8 +46,6 @@ public class GameLobbyController {
 	@FXML
 	private Label errorMessage;
 
-	// GameLobby gameLobby = new GameLobby();
-
 	@FXML
 	private void initialize() {
 		Player player = MainService.getCurrentPlayer();
@@ -117,6 +115,10 @@ public class GameLobbyController {
 
 			MainService.setCurrentLobbyID(gameLobby.getGameLobby_ID());
 			MainService.setRoundsInCurrentGame(gameLobby.getRoundCount());
+
+			Category selected = categoryComboBox.getSelectionModel().getSelectedItem();
+			MainService.setCurrentGameCategory(selected);
+
 			System.out.println("Current player: " + MainService.getCurrentPlayer().getUserName() + ", Lobby: "
 					+ MainService.getCurrentLobby() + ", rounds: " + MainService.getRoundsInCurrentGame()
 					+ ", category: " + MainService.getCurrentCategory());
@@ -132,13 +134,6 @@ public class GameLobbyController {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	@FXML
-	public void checkCategory() {
-		Category selected = categoryComboBox.getSelectionModel().getSelectedItem();
-		MainService.setCurrentGameCategory(selected);
-
 	}
 
 	public void checkRoundCount(String newValue) {
