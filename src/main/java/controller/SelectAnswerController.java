@@ -15,7 +15,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.AnswerCard;
 import model.Category;
-import model.Colour;
 import model.DatabaseUtils;
 import model.Deck;
 import model.QuestionCard;
@@ -106,10 +105,10 @@ public class SelectAnswerController {
 	@FXML
 	private ImageView ComputerCard15;
 
-	static Category category = MainService.getCurrentCategory();
+	Category category = MainService.getCurrentCategory();
 
 	// CREATE DECK-----------------------------
-	static Deck answerDeck = new Deck(category);
+	Deck answerDeck = new Deck(category);
 
 	// CREATE QUESTION DECK----------------------
 	QuestionDeck questionDeck = new QuestionDeck(category);
@@ -120,11 +119,11 @@ public class SelectAnswerController {
 	private static AnswerCard computerAnswer1;
 	private static AnswerCard computerAnswer2;
 	private static AnswerCard computerAnswer3;
-	private static AnswerCard ac1 = answerDeck.giveMeOneCard();
-	private static AnswerCard ac2 = answerDeck.giveMeOneCard();
-	private static AnswerCard ac3 = answerDeck.giveMeOneCard();
-	private static AnswerCard ac4 = answerDeck.giveMeOneCard();
-	private static AnswerCard ac5 = answerDeck.giveMeOneCard();
+	private AnswerCard ac1 = answerDeck.giveMeOneCard();
+	private AnswerCard ac2 = answerDeck.giveMeOneCard();
+	private AnswerCard ac3 = answerDeck.giveMeOneCard();
+	private AnswerCard ac4 = answerDeck.giveMeOneCard();
+	private AnswerCard ac5 = answerDeck.giveMeOneCard();
 
 	private static int idCounter = 1;
 	private static int roundID;
