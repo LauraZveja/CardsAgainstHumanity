@@ -35,9 +35,7 @@ public class LoginController {
 			alert_correct.showAndWait();
 
 			MainService.setCurrentPlayer(playerUsername);
-			System.out.println(
-					"LOGIN: Playerun:" + playerUsername + " current: " + MainService.getCurrentPlayer().getUserName());
-			if(DatabaseUtils.isPlayerAnAdmin(playerUsername)) {
+			if (DatabaseUtils.isPlayerAnAdmin(playerUsername)) {
 				try {
 					Scene scene_old = buttonLoginUser.getScene();
 					Stage stage_primary = (Stage) scene_old.getWindow();

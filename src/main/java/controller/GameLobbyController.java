@@ -52,7 +52,6 @@ public class GameLobbyController {
 	private void initialize() {
 		Player player = MainService.getCurrentPlayer();
 		user.setText(player.getUserName());
-		System.out.println("Player in initialize: " + player);
 
 		if (DatabaseUtils.isPlayerAnAdult(MainService.getCurrentPlayer().getUserName())) {
 			categoryComboBox.getItems().addAll(Category.values());
@@ -96,7 +95,6 @@ public class GameLobbyController {
 			primaryStage.show();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -108,21 +106,12 @@ public class GameLobbyController {
 			byte inputRoundCount = Byte.parseByte(roundCount.getText());
 			ArrayList<Player> players = new ArrayList<>();
 			players.add(MainService.getCurrentPlayer());
-			/*
-			 * QuestionDeck questionsDeck = new
-			 * QuestionDeck(MainService.getCurrentCategory()); ArrayList<QuestionCard>
-			 * inputQuestions = questionsDeck.getQuestionCards();
-			 * 
-			 * Deck answersDeck = new Deck(MainService.getCurrentCategory());
-			 * ArrayList<AnswerCard> inputAnswerDeck = answersDeck.getAnswerCards();
-			 */
 			GameLobby gameLobby = new GameLobby(inputRoundCount, (byte) 4, players, new ArrayList<QuestionCard>(),
 					new ArrayList<AnswerCard>());
 
 			try {
 				DatabaseUtils.saveGameLobbyToDB(gameLobby);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

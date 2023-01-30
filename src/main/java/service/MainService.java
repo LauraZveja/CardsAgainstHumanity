@@ -31,71 +31,7 @@ public class MainService extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*
-		 * currentPlayer.setUserName("User1"); currentLobby = 100;
-		 * currentGameScores.add(new Score(1, "User1", 20)); currentGameScores.add(new
-		 * Score(2, "User2", 14)); currentGameScores.add(new Score(3, "User3", 13));
-		 * currentGameScores.add(new Score(4, "User4", 10));
-		 */
 		launch(args);
-
-		// insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte!");
-		// insertAnswer(Category.ADULT, "Skat, skat tur laukā, zvaigznīte")
-
-		/*
-		 * ArrayList<String> new_adult_answers = new ArrayList<>();
-		 * new_adult_answers.add("Testing, testing, testing!");
-		 * new_adult_answers.add("A moment of silence.");
-		 * new_adult_answers.add("11111111111111."); new_adult_answers.add("22222222.");
-		 * new_adult_answers.add("A moment of silence.");
-		 * 
-		 * 
-		 * updateAdult_answers(Category.ADULT, new_adult_answers);
-		 * 
-		 * try { // Use BufferedReader to read the file BufferedReader reader = new
-		 * BufferedReader(new FileReader("src/main/resources/ADULT.txt")); String line;
-		 * // Read the file line by line while ((line = reader.readLine()) != null) { //
-		 * Print the contents of the file System.out.println(line); } // Close the
-		 * reader reader.close(); } catch (IOException e) { e.printStackTrace(); }
-		 */
-
-		// Pārbaude, vai katram spēlētājam piešķir 5 dažādas atbilžu kārtis.
-		/*
-		 * Player speletajs = new Player(); Deck kava = new Deck(Category.ADULT);
-		 * dealHand(speletajs, kava);
-		 * 
-		 * Player speletajs2 = new Player(); dealHand(speletajs2, kava);
-		 * 
-		 * System.out.println(speletajs.getAnswers());
-		 * System.out.println(speletajs2.getAnswers()); //
-		 * updateAnswerDeckByCategory(Category.ADULT, new_adult_answers);
-		 * //deleteAnswerFromAnswerDeckByCategory(Category.ADULT, "11111111111111");
-		 * //readAnswerDeckFileByCategory(Category.ADULT);
-		 */
-		// Deck deck1 = new Deck(Category.ADULT);
-		// readAnswerDeck(deck1);
-
-		// System.out.println(deck1);
-		// readAnswerDeckFirstCard(deck1);
-
-		// -------------- QUESTIONS ---------------------- //
-		// QuestionDeck questionDeck = new QuestionDeck(Category.UNDER_18);
-
-		// QuestionDeck questionDeck2 = new QuestionDeck(Category.ADULT);
-		// readQuestionDeck(questionDeck2);
-
-		/*
-		 * ArrayList<String> newQuestions = new ArrayList<>(); newQuestions.
-		 * add("I swear to God I am gonna murder my husband if he does not shut up about _____"
-		 * ); newQuestions.add("Yo, is _____ racist?");
-		 * newQuestions.add("I have solved politics. My solution is ______");
-		 * 
-		 * updateQuestions(Category.ADULT, newQuestions);
-		 * readQuestionDeckFileByCategory(Category.ADULT);
-		 * deleteQuestionFromQuestionDeckByCategory(Category.ADULT,
-		 * "Instead of the Jews, Hitler should have worried more about ____.");
-		 * readQuestionDeckFileByCategory(Category.ADULT);
-		 */
 
 	}
 

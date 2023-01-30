@@ -93,27 +93,27 @@
                   <children>
                      <Label fx:id="answerText_1" alignment="CENTER" layoutY="50.0" lineSpacing="2.0" prefHeight="210.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: black;" text="Answer" textAlignment="CENTER" wrapText="true">
                         <font>
-                           <Font name="System Italic" size="18.0" />
+                           <Font name="System Italic" size="16.0" />
                         </font>
                      </Label>
                      <Label fx:id="answerText_2" alignment="CENTER" layoutX="175.0" layoutY="50.0" lineSpacing="2.0" prefHeight="210.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: black;" text="Answer" textAlignment="CENTER" wrapText="true">
                         <font>
-                           <Font name="System Italic" size="18.0" />
+                           <Font name="System Italic" size="16.0" />
                         </font>
                      </Label>
                      <Label fx:id="answerText_3" alignment="CENTER" layoutX="350.0" layoutY="50.0" lineSpacing="2.0" prefHeight="210.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: black;" text="Answer" textAlignment="CENTER" wrapText="true">
                         <font>
-                           <Font name="System Italic" size="18.0" />
+                           <Font name="System Italic" size="16.0" />
                         </font>
                      </Label>
                      <Label fx:id="answerText_4" alignment="CENTER" layoutY="350.0" lineSpacing="2.0" prefHeight="210.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: black;" text="Answer" textAlignment="CENTER" wrapText="true">
                         <font>
-                           <Font name="System Italic" size="18.0" />
+                           <Font name="System Italic" size="16.0" />
                         </font>
                      </Label>
                      <Label fx:id="answerText_5" alignment="CENTER" layoutX="175.0" layoutY="350.0" lineSpacing="2.0" prefHeight="210.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: black;" text="Answer" textAlignment="CENTER" wrapText="true">
                         <font>
-                           <Font name="System Italic" size="18.0" />
+                           <Font name="System Italic" size="16.0" />
                         </font>
                      </Label>
                      <RadioButton fx:id="radioAnswer_1" layoutX="70.0" layoutY="275.0" mnemonicParsing="false" />
