@@ -11,11 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import model.AnswerCard;
 import model.DatabaseUtils;
 import model.GameLobby;
@@ -216,27 +218,46 @@ public class VoteController {
 
 		// CREATE PLAYER OBJECTS FOR COMPUTER AND SAVE THEM TO DB------------
 		computerPlayer1 = new Player("Parole123!", "SarcasmIsMyLoveLang", computerDoB);
-		try {
-			DatabaseUtils.savePlayerToDB(computerPlayer1);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+		String username = computerPlayer1.getUserName();
+
+		if (!DatabaseUtils.isUsernameTaken(username)) {
+
+			try {
+				DatabaseUtils.savePlayerToDB(computerPlayer1);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 
 		computerPlayer2 = new Player("Parole123!", "CynicalGenius", computerDoB);
-		try {
-			DatabaseUtils.savePlayerToDB(computerPlayer2);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String username2 = computerPlayer2.getUserName();
+
+		if (!DatabaseUtils.isUsernameTaken(username2)) {
+
+			try {
+				DatabaseUtils.savePlayerToDB(computerPlayer2);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 
 		computerPlayer3 = new Player("Parole123!", "DarkHumorEnthusiast", computerDoB);
-		try {
-			DatabaseUtils.savePlayerToDB(computerPlayer3);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String username3 = computerPlayer3.getUserName();
+
+		if (!DatabaseUtils.isUsernameTaken(username3)) {
+
+			try {
+				DatabaseUtils.savePlayerToDB(computerPlayer3);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 
 		// CREATE VOTE OBJECTS BASED ON CHOSEN VOTES--------------------------
