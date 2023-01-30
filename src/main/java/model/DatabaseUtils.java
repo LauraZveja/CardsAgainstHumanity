@@ -15,6 +15,8 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import service.MainService;
+
 public class DatabaseUtils {
 	private static final String URL = "jdbc:sqlite:cah.db";
 
@@ -260,7 +262,8 @@ public class DatabaseUtils {
 		return top3;
 	}
 
-	public static ArrayList<Score> getGameScore(int gamenumber) {
+	public static ArrayList<Score> getGameScore() {
+		int gamenumber = MainService.getCurrentLobby();
 		ArrayList<Score> scores = new ArrayList<>();
 		try (Connection connection = getConnection()) {
 			PreparedStatement statement = connection.prepareStatement(
