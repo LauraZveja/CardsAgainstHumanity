@@ -167,7 +167,7 @@ public class SelectAnswerController {
 
 	@FXML
 	public void initialize() {
-		
+
 		// SHOW CURRENT PLAYER'S USERNAME----------
 		PlayerUsername.setText(MainService.getCurrentPlayer().getUserName());
 
@@ -216,6 +216,7 @@ public class SelectAnswerController {
 		ToggleGroup group = new ToggleGroup();
 
 		radioAnswer_1.setToggleGroup(group);
+		radioAnswer_1.setSelected(true);
 		radioAnswer_2.setToggleGroup(group);
 		radioAnswer_3.setToggleGroup(group);
 		radioAnswer_4.setToggleGroup(group);
