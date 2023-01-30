@@ -109,7 +109,7 @@ public class SelectAnswerController {
 	static Category category = MainService.getCurrentCategory();
 
 	// CREATE DECK-----------------------------
-	Deck answerDeck = new Deck(category);
+	static Deck answerDeck = new Deck(category);
 
 	// CREATE QUESTION DECK----------------------
 	QuestionDeck questionDeck = new QuestionDeck(category);
@@ -120,11 +120,11 @@ public class SelectAnswerController {
 	private static AnswerCard computerAnswer1;
 	private static AnswerCard computerAnswer2;
 	private static AnswerCard computerAnswer3;
-	private static AnswerCard ac1;
-	private static AnswerCard ac2;
-	private static AnswerCard ac3;
-	private static AnswerCard ac4;
-	private static AnswerCard ac5;
+	private static AnswerCard ac1 = answerDeck.giveMeOneCard();
+	private static AnswerCard ac2 = answerDeck.giveMeOneCard();
+	private static AnswerCard ac3 = answerDeck.giveMeOneCard();
+	private static AnswerCard ac4 = answerDeck.giveMeOneCard();
+	private static AnswerCard ac5 = answerDeck.giveMeOneCard();
 
 	@FXML
 	private Button buttonReturnToMainMenuFromSelectAnswer;
@@ -198,13 +198,6 @@ public class SelectAnswerController {
 
 		// --------------ANSWER CARDS--------------
 
-		// GET PLAYER'S HAND-----------------------
-		ac1 = answerDeck.giveMeOneCard();
-		ac2 = answerDeck.giveMeOneCard();
-		ac3 = answerDeck.giveMeOneCard();
-		ac4 = answerDeck.giveMeOneCard();
-		ac5 = answerDeck.giveMeOneCard();
-
 		// SHOW PLAYER'S HAND----------------------
 		answerText_1.setText(ac1.getAnswer());
 		answerText_2.setText(ac2.getAnswer());
@@ -245,22 +238,32 @@ public class SelectAnswerController {
 		if (radioAnswer_1.isSelected()) {
 			answerText_1.setText(radioAnswer_1.getText());
 			radioAnswer = ac1;
+			ac1 = answerDeck.giveMeOneCard();
+			answerText_1.setText(ac1.getAnswer());
 
 		} else if (radioAnswer_2.isSelected()) {
 			answerText_2.setText(radioAnswer_2.getText());
 			radioAnswer = ac2;
+			ac2 = answerDeck.giveMeOneCard();
+			answerText_2.setText(ac2.getAnswer());
 
 		} else if (radioAnswer_3.isSelected()) {
 			answerText_3.setText(radioAnswer_3.getText());
 			radioAnswer = ac3;
+			ac3 = answerDeck.giveMeOneCard();
+			answerText_3.setText(ac3.getAnswer());
 
 		} else if (radioAnswer_4.isSelected()) {
 			answerText_4.setText(radioAnswer_4.getText());
 			radioAnswer = ac4;
+			ac4 = answerDeck.giveMeOneCard();
+			answerText_4.setText(ac4.getAnswer());
 
 		} else {
 			answerText_5.setText(radioAnswer_5.getText());
 			radioAnswer = ac5;
+			ac5 = answerDeck.giveMeOneCard();
+			answerText_5.setText(ac5.getAnswer());
 		}
 
 		// GO TO VOTE FRAME------------------------------------
