@@ -81,6 +81,7 @@ public class GameScoreController {
 
 	@FXML
 	public void clickLogout() {
+		SelectAnswerController.resetRoundID();
 		try {
 			Scene scene_old = logout.getScene();
 			Stage stage_primary = (Stage) scene_old.getWindow();
