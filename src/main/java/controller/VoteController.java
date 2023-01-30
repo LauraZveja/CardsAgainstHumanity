@@ -344,6 +344,12 @@ public class VoteController {
 
 		// ADD ALL VOTES TO CURRENT ROUND OBJECT------------------------------
 		SelectAnswerController.round.setVotes(allVotes);
+		try {
+			DatabaseUtils.saveVotesToDB(SelectAnswerController.round);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		// GO TO ROUND RESULTS FRAME------------------------------------------
 		try {
