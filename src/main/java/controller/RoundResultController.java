@@ -239,6 +239,7 @@ public class RoundResultController {
 		ResultsAnswerCard1.setText(computerAnswer1.getAnswer());
 		ResultsAnswerCard2.setText(computerAnswer2.getAnswer());
 		ResultsAnswerCard3.setText(computerAnswer3.getAnswer());
+		ResultsAnswerCardPlayer.setText(radioAnswer.getAnswer());
 
 		// GET QUESTION CARD TEXT FROM FRAME 7-------------------------------
 		ResultsQuestionCard.setText(questionText.getText());
