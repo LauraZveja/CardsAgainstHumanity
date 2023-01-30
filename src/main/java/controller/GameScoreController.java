@@ -94,6 +94,7 @@ public class GameScoreController {
 
 	@FXML
 	private void startNewGame() {
+		SelectAnswerController.resetRoundID();
 		try {
 			Scene scene_old = newGameButton.getScene();
 			Stage stage_primary = (Stage) scene_old.getWindow();

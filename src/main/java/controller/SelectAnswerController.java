@@ -141,7 +141,6 @@ public class SelectAnswerController {
 	public static void resetRoundID() {
 		idCounter = 1;
 		roundID = idCounter;
-
 	}
 
 	@FXML

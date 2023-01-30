@@ -215,7 +215,7 @@ public class RoundResultController {
 				e.printStackTrace();
 			}
 		} else {
-			SelectAnswerController.resetRoundID();
+			
 			try {
 				Scene scene_old = ReturnToLobbyFromResults.getScene();
 				Stage stage_primary = (Stage) scene_old.getWindow();
