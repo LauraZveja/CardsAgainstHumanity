@@ -174,6 +174,8 @@ public class SelectAnswerController {
 		// SHOW GAME ID----------------------------
 		getGameID();
 		GameID.setText(String.valueOf(currentGameID));
+		
+		round.setGameLobby_ID(currentGameID);
 
 		// SHOW ROUND ID---------------------------
 		getRoundId();
