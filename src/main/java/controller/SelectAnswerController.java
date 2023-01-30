@@ -126,6 +126,24 @@ public class SelectAnswerController {
 	private static AnswerCard ac4 = answerDeck.giveMeOneCard();
 	private static AnswerCard ac5 = answerDeck.giveMeOneCard();
 
+	private static int idCounter = 1;
+	private static int roundID;
+
+	public static int getRoundID() {
+		return roundID;
+	}
+
+	public void setRoundID() {
+		roundID = idCounter;
+		idCounter++;
+	}
+
+	public static void resetRoundID() {
+		idCounter = 1;
+		roundID = idCounter;
+
+	}
+
 	@FXML
 	private Button buttonReturnToMainMenuFromSelectAnswer;
 
@@ -156,14 +174,7 @@ public class SelectAnswerController {
 	@FXML
 	private Label RoundID;
 
-	private int currentRoundID;
-
 	public static Round round = new Round();
-
-	// GET ROUND ID--------------------------
-	public void getRoundId() {
-		currentRoundID = round.getRoundID();
-	}
 
 	@FXML
 	public void initialize() {
@@ -174,12 +185,12 @@ public class SelectAnswerController {
 		// SHOW GAME ID----------------------------
 		getGameID();
 		GameID.setText(String.valueOf(currentGameID));
-		
+
 		round.setGameLobby_ID(currentGameID);
 
 		// SHOW ROUND ID---------------------------
-		getRoundId();
-		RoundID.setText(String.valueOf(currentRoundID));
+		setRoundID();
+		RoundID.setText(String.valueOf(getRoundID()));
 
 		// COMPUTER CARD BACK----------------------
 		ComputerCard1.setImage(new Image("Card back.jpg"));

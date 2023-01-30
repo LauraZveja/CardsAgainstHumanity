@@ -116,7 +116,7 @@ public class VoteController {
 
 	// GET ROUND ID-------------------------------------------------------
 	public void getRoundId() {
-		currentRoundID = SelectAnswerController.round.getRoundID();
+		currentRoundID = SelectAnswerController.getRoundID();
 	}
 
 	// STATIC VARIABLE INITIALIZATION TO BE USED BY FRAME 8 AS WELL-------
