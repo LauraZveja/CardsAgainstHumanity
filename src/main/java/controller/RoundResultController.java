@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.AnswerCard;
 import model.DatabaseUtils;
+import model.GameLobby;
 import model.Player;
 import model.QuestionCard;
 import model.Round;
@@ -201,18 +202,30 @@ public class RoundResultController {
 
 	@FXML
 	public void clickContinueToNextRoundFromResults() {
+		if (MainService.getRoundsInCurrentGame() > SelectAnswerController.round.getRoundID()) {
+			SelectAnswerController.round = new Round();
 
-		SelectAnswerController.round = new Round();
-		
-		try {
-			Scene scene_old = ReturnToLobbyFromResults.getScene();
-			Stage stage_primary = (Stage) scene_old.getWindow();
-			Scene scene_new = FXMLLoader.load(getClass().getResource("/frame6_Select_answer.fxml"));
-			stage_primary.setScene(scene_new);
-			stage_primary.show();
-		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				Scene scene_old = ReturnToLobbyFromResults.getScene();
+				Stage stage_primary = (Stage) scene_old.getWindow();
+				Scene scene_new = FXMLLoader.load(getClass().getResource("/frame6_select_answer.fxml"));
+				stage_primary.setScene(scene_new);
+				stage_primary.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				Scene scene_old = ReturnToLobbyFromResults.getScene();
+				Stage stage_primary = (Stage) scene_old.getWindow();
+				Scene scene_new = FXMLLoader.load(getClass().getResource("/frame9_game_results.fxml"));
+				stage_primary.setScene(scene_new);
+				stage_primary.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+
 	}
 
 	@FXML
