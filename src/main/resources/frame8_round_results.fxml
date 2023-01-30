@@ -46,7 +46,7 @@
                   <children>
                      <Pane prefHeight="200.0" prefWidth="550.0">
                         <children>
-                           <Label fx:id="ResultsUsername3_1" text="Computer Player 1">
+                           <Label fx:id="ResultsUsername3_1" text="SarcasmIsMyLoveLanguage">
                               <font>
                                  <Font size="18.0" />
                               </font>
@@ -60,7 +60,7 @@
                      </Pane>
                      <Pane layoutY="200.0" prefHeight="200.0" prefWidth="550.0">
                         <children>
-                           <Label fx:id="ResultsUsername3_2" text="Computer Player 2">
+                           <Label fx:id="ResultsUsername3_2" text="CynicalGenius">
                               <font>
                                  <Font size="18.0" />
                               </font>
@@ -74,7 +74,7 @@
                      </Pane>
                      <Pane layoutY="400.0" prefHeight="200.0" prefWidth="550.0">
                         <children>
-                           <Label fx:id="ResultsUsername3_3" text="Computer Player 3">
+                           <Label fx:id="ResultsUsername3_3" text="DarkHumorEnthusiast">
                               <font>
                                  <Font size="18.0" />
                               </font>
@@ -110,17 +110,17 @@
                            <Font name="System Bold" size="18.0" />
                         </font>
                      </Button>
-                     <Label fx:id="ResultsUsername1" layoutY="14.0" prefHeight="27.0" prefWidth="130.0" text="Player">
+                     <Label fx:id="ResultsUsername1" layoutY="-1.0" prefHeight="59.0" prefWidth="130.0" text="SarcasmIsMyLoveLanguage" wrapText="true">
                         <font>
                            <Font name="System Bold" size="18.0" />
                         </font>
                      </Label>
-                     <Label fx:id="ResultsUsername2" layoutX="175.0" layoutY="14.0" prefHeight="27.0" prefWidth="130.0" text="Player">
+                     <Label fx:id="ResultsUsername2" layoutX="175.0" layoutY="14.0" prefHeight="27.0" prefWidth="130.0" text="CynicalGenius">
                         <font>
                            <Font name="System Bold" size="18.0" />
                         </font>
                      </Label>
-                     <Label fx:id="ResultsUsername3" layoutX="350.0" layoutY="14.0" prefHeight="27.0" prefWidth="130.0" text="Player">
+                     <Label fx:id="ResultsUsername3" layoutX="355.0" layoutY="-2.0" prefHeight="59.0" prefWidth="130.0" text="DarkHumorEnthusiast" wrapText="true">
                         <font>
                            <Font name="System Bold" size="18.0" />
                         </font>
