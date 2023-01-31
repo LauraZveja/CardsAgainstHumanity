@@ -25,7 +25,7 @@ public class DatabaseUtils {
 		if (dbFile.exists()) {
 			return;
 		}
-		try (Connection conn = DriverManager.getConnection(URL)) {
+		try (Connection conn = getConnection()) {
 			InputStream input = DatabaseUtils.class.getClassLoader().getResourceAsStream("create_table.sql");
 			String fileContent = new String(input.readAllBytes());
 			String[] statements = fileContent.split(";");
@@ -95,7 +95,7 @@ public class DatabaseUtils {
 
 	// USEFUL FUNCTIONS ZEMAK
 	public static Connection getConnection() throws SQLException {
-		return DriverManager.getConnection("jdbc:sqlite:cah.db");
+		return DriverManager.getConnection(URL);
 	}
 
 	public static int getPlayerIdByUsername(String username) {
@@ -296,7 +296,7 @@ public class DatabaseUtils {
 	}
 
 	public static boolean isPlayerAnAdmin(String username) {
-		try (Connection connection = DatabaseUtils.getConnection()) {
+		try (Connection connection = getConnection()) {
 			PreparedStatement ps = connection.prepareStatement(
 					"SELECT admin FROM Players WHERE username = ?");
 			ps.setString(1, username);
