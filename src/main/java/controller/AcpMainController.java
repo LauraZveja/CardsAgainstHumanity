@@ -56,10 +56,6 @@ public class AcpMainController {
 		}
 	}
 	@FXML
-	public void clickEditPlayers() {
-		
-	}
-	@FXML
 	public void clickLogout() {
 		try {
 			Scene scene = logout.getScene();

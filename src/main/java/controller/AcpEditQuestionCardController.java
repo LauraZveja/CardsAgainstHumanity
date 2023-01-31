@@ -191,7 +191,6 @@ public class AcpEditQuestionCardController {
 	}
 	
 	public void deleteQuestionFromQuestionDeckByCategory(Category category, String unwanted_Question) {
-		System.out.println(unwanted_Question);
 		File file = new File("src/main/resources/QUESTIONS_" + category + ".txt");
 		StringBuilder temp_questions = new StringBuilder();
 		try {

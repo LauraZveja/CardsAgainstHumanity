@@ -191,7 +191,6 @@ public class AcpEditAnswerCardController {
 	}
 	
 	public void deleteAnswerFromAnswerDeckByCategory(Category category, String unwanted_Answer) {
-		System.out.println(unwanted_Answer);
 		File file = new File("src/main/resources/" + category + ".txt");
 		StringBuilder temp_answers = new StringBuilder();
 		try {
